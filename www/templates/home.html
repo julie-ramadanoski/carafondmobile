@@ -1,18 +1,19 @@
+<!-- public/views/userView.html -->
 <ion-view view-title='home'>
-	<ion-content scroll='true' class="padding">
-		
-		<div class="list">
-			<label class="item item-input">
-				<input type="email" placeholder="ryanchenkie@gmail.com" ng-model="auth.email">
-			</label>
-			<label class="item item-input">
-				<input type="password" placeholder="Password" ng-model="auth.password">
-			</label>
-			<button class="button button-block button-positive" ng-click="auth.login()">
-				Se connecter
-			</button>
-		</div>
 
-	</ion-content>
+     <ion-tabs class="tabs-icon-top tabs-positive">
+
+        <ion-tab title="Conducteur" icon="ion-android-person-add" ui-sref="home.conducteur">
+          <ion-nav-view name="conducteur"></ion-nav-view>
+        </ion-tab>
+
+        <ion-tab title="Passager" icon="ion-android-notifications" ui-sref="home.passager">
+          <ion-nav-view name="passager"></ion-nav-view>
+        </ion-tab>
+
+       
+
+      </ion-tabs>
+
+    </ion-content>
 </ion-view>
-
