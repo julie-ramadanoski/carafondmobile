@@ -41,8 +41,15 @@ angular.module('carafond', ['ionic', 'satellizer'])
       url: '/users',
       templateUrl: 'templates/user.html',
       controller: 'UserController as user'
+  })
+  .state('users.detail', {
+      url: '/:user', //Parametre de l'enfant de users
+      templateUrl: 'templates/users.detail.html',
+      controller: function($scope) {
+        $scope.items = ["A", "List", "Of", "Items"];
+      }
   });
 
   // Définition route par défault
-  $urlRouterProvider.otherwise('/home')
+  $urlRouterProvider.otherwise('/home');
 })
