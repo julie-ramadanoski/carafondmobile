@@ -24,27 +24,28 @@
                 password: vm.password
             }
 
-            $auth.login(credentials).then(function() {
-
+            $auth.login(credentials)
+            .then( 
                 // Return an $http request for the now authenticated
                 // user so that we can flatten the promise chain
-                return $http.get('http://localhost:8000/api/authenticate/user');
+                function() {
+                    
+                    return $http.get('http://localhost:8000/api/authenticate/user');
 
-            // Handle errors
-            }, function(error) {
-                
-                vm.loginError = true;
-                
-                if (error.data){  
-                
-                    console.log(error); 
-                    vm.loginErrorText = error.data.error; 
-                
+                }, 
+                // Handle errors
+                function(error) {
+                    
+                    vm.loginError = true;
+                    
+                    if (error.data){  
+                        vm.loginErrorText = error.data.error;                
+                    }
                 }
-
+            )
             // Because we returned the $http.get request in the $auth.login
             // promise, we can chain the next promise to the end here
-            }).then(function(response) {
+            .then(function(response) {
                 if(response){
 
                     // Stringify the returned data to prepare it
