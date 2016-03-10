@@ -32,8 +32,15 @@
 
             // Handle errors
             }, function(error) {
+                
                 vm.loginError = true;
-                if (error.data){  console.log(error); vm.loginErrorText = error.data.error; }
+                
+                if (error.data){  
+                
+                    console.log(error); 
+                    vm.loginErrorText = error.data.error; 
+                
+                }
 
             // Because we returned the $http.get request in the $auth.login
             // promise, we can chain the next promise to the end here
@@ -63,7 +70,7 @@
                 }else{
 
                   console.log("Pas de réponse serveur");
-                  
+
                 }
             });
         }
