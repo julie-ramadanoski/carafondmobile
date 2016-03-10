@@ -38,8 +38,17 @@ angular.module('carafond', ['ionic', 'satellizer'])
     })
     .state('user', {
       url: '/user',
-      templateUrl: 'templates/user.html',
-      controller: 'UserController as user'
+      templateUrl: 'templates/user.html',      
+      controller: 'UserController as user'      
+    })
+    .state('user.detail', {
+      url: '/user',
+      views:{
+        'detail':{
+          templateUrl: 'templates/userdetail.html',
+          controller: 'UserController as user'
+        }
+      }
     })
 
     .state('home', {
@@ -51,8 +60,8 @@ angular.module('carafond', ['ionic', 'satellizer'])
       url: '/conducteur',
       views: {
         'conducteur': {
-          templateUrl: "templates/conducteur.html" /*,
-          controller: 'ConducteurController as conducteur'*/
+          templateUrl: "templates/conducteur.html" ,
+          controller: 'UserController as user'
         }
       }
     })
@@ -60,8 +69,8 @@ angular.module('carafond', ['ionic', 'satellizer'])
       url: '/passager',
       views: {
         'passager': {
-          templateUrl: "templates/passager.html"
-           /*, controller: 'PassagerController as passager'*/
+          templateUrl: "templates/passager.html",
+          controller: 'UserController as user'
         }
       }
     });

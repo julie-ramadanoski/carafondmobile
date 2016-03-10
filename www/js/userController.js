@@ -18,10 +18,14 @@
         vm.getUsers = function() {
 
             //Grab the list of users from the API
-            $http.get('http://localhost:8000/api/authenticate/user').success(function(users) {
-                vm.users = users;
+            $http.get('http://localhost:8000/api/authenticate')
+            
+            .success(function(users) {
+                $rootScope.users = users;
                 console.log(users);
-            }).error(function(error) {
+            })
+            
+            .error(function(error) {
                 vm.error = error;
             });
         }

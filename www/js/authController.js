@@ -30,13 +30,17 @@
                 // user so that we can flatten the promise chain
                 function() {
                     
-                    return $http.get('http://localhost:8000/api/authenticate/');
+                    return $http.get('http://localhost:8000/api/authenticate/user');
 
                 }, 
                 // Handle errors
                 function(error) {
+
+                        if (error.data){
+
+                            vm.loginErrorText = error.data.error;
+                        }
                         vm.loginError = true;
-                        vm.loginErrorText = error.data.error;
 
                     
                     }
@@ -65,7 +69,7 @@
 
                     // Everything worked out so we can now redirect to
                     // the users state to view the data
-                    $state.go('home');
+                    $state.go('user');
                 }
 
             });
