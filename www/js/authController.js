@@ -36,23 +36,21 @@
                 // Handle errors
                 function(error) {
 
-                        if (error.data){
+                    if (error.data){
 
-                            vm.loginErrorText = error.data.error;
-                        }
-                        vm.loginError = true;
-
-                    
+                        vm.loginErrorText = error.data.error;
                     }
-                )
+                    vm.loginError = true;
+                
+                }
+            )
             // Because we returned the $http.get request in the $auth.login
             // promise, we can chain the next promise to the end here
             .then(function(response) {
-
-                // Stringify the returned data to prepare it
-                // to go into local storage
                 if(response){
 
+                    // Stringify the returned data to prepare it
+                    // to go into local storage
                     var user = JSON.stringify(response.data.user);
 
                     // Set the stringified user data into local storage
@@ -70,8 +68,12 @@
                     // Everything worked out so we can now redirect to
                     // the users state to view the data
                     $state.go('user');
-                }
 
+                }else{
+
+                  console.log("Pas de réponse serveur");
+                  
+                }
             });
         }
     }

@@ -26,7 +26,7 @@
             })
             
             .error(function(error) {
-                vm.error = error;
+                $rootScope.error = error;
             });
         }
 

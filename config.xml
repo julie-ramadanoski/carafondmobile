@@ -13,9 +13,7 @@ https://github.com/phonegap/phonegap-start/blob/master/www/config.xml-->
     </author>
 
   <content src="index.html"/>
-  <!-- <access origin="http://localhost:8000" /> -->
-  <access origin="*" /> 
-
+  <access origin="*" />
 
   <preference name="webviewbounce" value="false"/>
   <preference name="UIWebViewBounce" value="false"/>
