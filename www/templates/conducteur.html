@@ -12,9 +12,8 @@
     </label>
   </div>
     <ul class="list" ng-if="user">
-        
-            <h4>N°{{user.id}} {{user.name}}</h4> </a>
-            <h5>{{user.email}}</h5>          
+            <h4>N°{{user.currentUser.id}} {{user.currentUsername}}</h4> </a>
+            <h5>{{user.mail}}</h5>          
         
     </ul>
     <div class="alert alert-danger" ng-if="user.error">
