@@ -9,7 +9,7 @@
         .controller('AuthController', AuthController);
 
 
-    function AuthController($auth, $state, $http, $rootScope) {
+    function AuthController($auth, $state, $http, $scope) {
 
         var vm = this;
 
@@ -57,11 +57,11 @@
                     // The user's authenticated state gets flipped to
                     // true so we can now show parts of the UI that rely
                     // on the user being logged in
-                    $rootScope.authenticated = true;
+                    $scope.authenticated = true;
 
                     // Putting the user's data on $rootScope allows
                     // us to access it anywhere across the app
-                    $rootScope.currentUser = response.data.user;
+                    $scope.currentUser = response.data.user;
                     // Everything worked out so we can now redirect to
                     // the users state to view the data
                     $state.go('user');
