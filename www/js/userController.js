@@ -8,25 +8,40 @@
         .module('carafond')
         .controller('UserController', UserController);  
 
-    function UserController($http, $auth, $rootScope) {
+    function UserController($http, $auth, $rootScope, $state) {
 
+        //$auth.logout = '/';
         var vm = this;
 
         vm.users;
         vm.error;
 
+        vm.getAlertes = function(){
+
+            $http.get('http://localhost:8000/api/authenticate/alertes' )
+            //$http.get('http://localhost:8000/api/authenticate/alertes?token=' + localStorage.getItem('satellizer_token') )
+            .success(function(alertes) {
+                vm.alertes = alertes;
+                console.log(alertes);
+            })
+            
+            .error(function(error) {
+                vm.error = error;
+            });
+        }
+
         vm.getUsers = function() {
 
             //Grab the list of users from the API
             $http.get('http://localhost:8000/api/authenticate')
-            
+
             .success(function(users) {
-                $rootScope.users = users;
+                vm.users = users;
                 console.log(users);
             })
             
             .error(function(error) {
-                $rootScope.error = error;
+                vm.error = error;
             });
         }
 
@@ -46,6 +61,8 @@
 
                 // Remove the current user info from rootscope
                 $rootScope.currentUser = null;
+
+                $state.go('auth');
             });
         }
     }

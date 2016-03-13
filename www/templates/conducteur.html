@@ -3,30 +3,35 @@
     <div class="bar bar-subheader" >
       <h2 class="title">Rechercher passagers</h2>
     </div>
-  <ion-content class="padding has-subheader">
+    <ion-content class="padding has-subheader">
 
-   <div class="list list-inset">    
-    <label class="item item-input">
-      <i class="icon ion-search placeholder-icon"></i>
-      <input type="text" placeholder="Ville de départ">
-    </label>
-  </div>
-    <ul class="list" ng-if="user">
-        
-            <h4>N°{{user.id}} {{user.name}}</h4> </a>
-            <h5>{{user.email}}</h5>          
-        
-    </ul>
-    <div class="alert alert-danger" ng-if="user.error">
-        <strong>There was an error: </strong> {{user.error.error}}
-        <br>Please go back and login again
+    <div class="list list-inset">    
+        <label class="item item-input">
+            <i class="icon ion-search placeholder-icon"></i>
+            <input type="text" placeholder="Ville de départ">
+        </label>
     </div>
-    <button class="button button-block button-positive">
+    <button class="button button-block button-positive" ng-click="user.getAlertes()">
       Trouver !
     </button>
-  
+    
+    <div class="buttons" style="margin-bottom: 10px">
+            <button class="btn btn-primary" ng-click="user.getUsers()">Get Users!</button>
+            <button class="btn btn-danger" ng-click="user.logout()">Logout</button>
+        </div>
+        <ul class="list-group" ng-if="user.users">
+            <li class="list-group-item" ng-repeat="user in user.users">
+                <h4>{{user.name}}</h4>
+                <h5>{{user.email}}</h5>
+            </li>
+        </ul>
+        <div class="alert alert-danger" ng-if="user.error">
+            <strong>There was an error: </strong> {{user.error.error}}
+            <br>Please go back and login again
+        </div>
 
     
+      
   </ion-content>
 
 </ion-view>
