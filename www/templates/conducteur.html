@@ -5,11 +5,20 @@
     </div>
     <ion-content class="padding has-subheader">
 
-    <div class="list list-inset">    
-        <label class="item item-input">
-            <i class="icon ion-search placeholder-icon"></i>
-            <input type="text" placeholder="Ville de départ">
-        </label>
+   <div class="list list-inset">    
+    <label class="item item-input">
+      <i class="icon ion-search placeholder-icon"></i>
+      <input type="text" placeholder="Ville de départ"  ng-model="user.ville">>
+    </label>
+  </div>
+    <ul class="list" ng-if="user">
+            <h4>N°{{user.currentUser.id}} {{user.currentUser.name}}</h4> </a>
+            <h5>{{user.currentUser.mail}}</h5>          
+        
+    </ul>
+    <div class="alert alert-danger" ng-if="user.error">
+        <strong>There was an error: </strong> {{user.error.error}}
+        <br>Please go back and login again
     </div>
     <button class="button button-block button-positive" ng-click="user.getAlertes()">
       Trouver !
