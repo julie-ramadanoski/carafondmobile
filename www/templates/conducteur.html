@@ -8,13 +8,12 @@
    <div class="list list-inset">    
     <label class="item item-input">
       <i class="icon ion-search placeholder-icon"></i>
-      <input type="text" placeholder="Ville de départ"  ng-model="user.ville">>
+      <input type="text" placeholder="Ville de départ"  ng-model="user.villeDepart">>
     </label>
   </div>
     <ul class="list" ng-if="user">
-            <h4>N°{{user.currentUser.id}} {{user.currentUser.name}}</h4> </a>
-            <h5>{{user.currentUser.mail}}</h5>          
-        
+            <h4>N°{{currentUser.id}} {{ currentUser.name}}</h4> </a>
+            <h5>{{ currentUser.mail}}</h5>          
     </ul>
     <div class="alert alert-danger" ng-if="user.error">
         <strong>There was an error: </strong> {{user.error.error}}
@@ -23,6 +22,19 @@
     <button class="button button-block button-positive" ng-click="user.getAlertes()">
       Trouver !
     </button>
+     <ul class="list-group" ng-if="user.alertes">
+            <li class="list-group-item" ng-repeat="alerte in user.alertes">
+                <h4>Nom {{alerte.name}}</h4>
+                <p>Tel {{alerte.telMobMemb}}<P>
+                <p>Destination {{alerte.etape_arrivee.ville.nomVille}}<p>
+
+                
+                <button class="button button-positive" ng-click="user.accepterAlerte()">
+                  Accepter
+                </button>
+
+            </li>
+        </ul>
     
     <div class="buttons" style="margin-bottom: 10px">
             <button class="btn btn-primary" ng-click="user.getUsers()">Get Users!</button>
