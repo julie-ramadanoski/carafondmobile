@@ -12,7 +12,7 @@
     function UserController($http, $auth, $rootScope, $scope, $state) {
 
         var vm = this;
-        vm.villeDepart;
+        vm.villeDepart='';
         vm.alertes;
         vm.users;
         vm.error;
@@ -22,6 +22,8 @@
             $http.get('http://localhost:8000/api/authenticate/alertes/'+ vm.villeDepart )
             .success(function(alertes) {
                 vm.alertes = alertes;
+                $state.go('alertes'); // aller à la liste des résultats   
+                           
             })
             
             .error(function(error) {

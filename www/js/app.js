@@ -58,7 +58,7 @@ angular.module('carafond', ['ionic', 'satellizer'])
 
                       // go to the "main" state which in our case is users
                       $state.go('users');
-                }       
+                }
             }
         });
     });
@@ -107,6 +107,15 @@ angular.module('carafond', ['ionic', 'satellizer'])
       views: {
         'conducteur': {
           templateUrl: "templates/conducteur.html" ,
+          controller: 'UserController as user'
+        }
+      }
+    })
+    .state('alertes', {
+      url: '/alertes',
+      views: {
+        'alertes': {
+          templateUrl: "templates/alertes.html" ,
           controller: 'UserController as user'
         }
       }
