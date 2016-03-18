@@ -22,7 +22,7 @@
             $http.get('http://localhost:8000/api/authenticate/alertes/'+ vm.villeDepart )
             .success(function(alertes) {
                 vm.alertes = alertes;
-                $state.go('alertes'); // aller à la liste des résultats   
+                $state.go('home.alertes'); // aller à la liste des résultats   
                            
             })
             

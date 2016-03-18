@@ -3,9 +3,7 @@
     <div class="bar bar-subheader" >
       <h2 class="title">Liste des passagers</h2>
     </div>
-
     <ion-content class="padding has-subheader">
-		{{ user  }} HELLO
 		<ul class="list-group" ng-if="user.alertes">
 	        <li class="list-group-item" ng-repeat="alerte in user.alertes">
 	            <h4>Nom {{alerte.name}}</h4>

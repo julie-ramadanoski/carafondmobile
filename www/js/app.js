@@ -27,7 +27,7 @@ angular.module('carafond', ['ionic', 'satellizer'])
         }
         // $stateChangeStart is fired whenever the state changes. We can use some parameters
         // such as toState to hook into details about the state as it is changing
-        $rootScope.$on('$stateChangeStart', function(event, toState) {
+        /*$rootScope.$on('$stateChangeStart', function(event, toState) {
 
             // Grab the user from local storage and parse it to an object
             var user = JSON.parse(localStorage.getItem('user'));            
@@ -57,10 +57,10 @@ angular.module('carafond', ['ionic', 'satellizer'])
                       event.preventDefault();
 
                       // go to the "main" state which in our case is users
-                      $state.go('users');
+                      $state.go('home');
                 }
             }
-        });
+        });*/
     });
 })
 .config(function($stateProvider, $urlRouterProvider, $authProvider, $httpProvider, $httpProvider, $provide){
@@ -71,10 +71,10 @@ angular.module('carafond', ['ionic', 'satellizer'])
   $authProvider.loginUrl = 'http://localhost:8000/api/authenticate';
   
   // Setup for the $httpInterceptor
-  $provide.factory('redirectWhenLoggedOut', redirectWhenLoggedOut);
+  //$provide.factory('redirectWhenLoggedOut', redirectWhenLoggedOut);
 
   // Push the new factory onto the $http interceptor array
-  $httpProvider.interceptors.push('redirectWhenLoggedOut');
+  //$httpProvider.interceptors.push('redirectWhenLoggedOut');
 
     // Définition de la homePage
     $stateProvider.state('auth',{
@@ -99,8 +99,12 @@ angular.module('carafond', ['ionic', 'satellizer'])
 
     .state('home', {
       url: '/home',
-      //abstract: true,
-      templateUrl: 'templates/home.html'
+      /*abstract: true,
+      views: {
+        'home' :{*/
+          templateUrl: 'templates/home.html'
+        /*}
+      }*/
     })
     .state('home.conducteur', {
       url: '/conducteur',
@@ -111,7 +115,7 @@ angular.module('carafond', ['ionic', 'satellizer'])
         }
       }
     })
-    .state('alertes', {
+    .state('home.alertes', {
       url: '/alertes',
       views: {
         'alertes': {
@@ -130,7 +134,7 @@ angular.module('carafond', ['ionic', 'satellizer'])
       }
     });
 
-  function redirectWhenLoggedOut($q, $injector) {
+  /*function redirectWhenLoggedOut($q, $injector) {
 
     return {
 
@@ -164,7 +168,7 @@ angular.module('carafond', ['ionic', 'satellizer'])
           return $q.reject(rejection);
       }
     }
-  };
+  };*/
 
 
 });
