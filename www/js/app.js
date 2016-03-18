@@ -27,7 +27,7 @@ angular.module('carafond', ['ionic', 'satellizer'])
         }
         // $stateChangeStart is fired whenever the state changes. We can use some parameters
         // such as toState to hook into details about the state as it is changing
-        /*$rootScope.$on('$stateChangeStart', function(event, toState) {
+        $rootScope.$on('$stateChangeStart', function(event, toState) {
 
             // Grab the user from local storage and parse it to an object
             var user = JSON.parse(localStorage.getItem('user'));            
@@ -60,7 +60,7 @@ angular.module('carafond', ['ionic', 'satellizer'])
                       $state.go('home');
                 }
             }
-        });*/
+        });
     });
 })
 .config(function($stateProvider, $urlRouterProvider, $authProvider, $httpProvider, $httpProvider, $provide){
@@ -82,25 +82,11 @@ angular.module('carafond', ['ionic', 'satellizer'])
     templateUrl:'templates/auth.html',
     controller: 'AuthController as auth'
     })
-    .state('user', {
-      url: '/user',
-      templateUrl: 'templates/user.html',      
-      controller: 'UserController as user'      
-    })
-    .state('user.detail', {
-      url: '/user',
-      views:{
-        'detail':{
-          templateUrl: 'templates/userdetail.html',
-          controller: 'UserController as user'
-        }
-      }
-    })
-
+    
     .state('home', {
       url: '/home',
-      /*abstract: true,
-      views: {
+     abstract: true,
+      /* views: {
         'home' :{*/
           templateUrl: 'templates/home.html'
         /*}
@@ -118,7 +104,8 @@ angular.module('carafond', ['ionic', 'satellizer'])
     .state('home.alertes', {
       url: '/alertes',
       views: {
-        'alertes': {
+        // est relié à la vue conducteur
+        'conducteur': { 
           templateUrl: "templates/alertes.html" ,
           controller: 'UserController as user'
         }
@@ -134,7 +121,7 @@ angular.module('carafond', ['ionic', 'satellizer'])
       }
     });
 
-  /*function redirectWhenLoggedOut($q, $injector) {
+  function redirectWhenLoggedOut($q, $injector) {
 
     return {
 
@@ -168,7 +155,7 @@ angular.module('carafond', ['ionic', 'satellizer'])
           return $q.reject(rejection);
       }
     }
-  };*/
+  };
 
 
 });
