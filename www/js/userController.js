@@ -13,10 +13,37 @@
 
         var vm = this;
         vm.villeDepart='';
+        vm.villeDepartAlerte='';
+        vm.villeArriveeAlerte='';
+        vm.heureAlerte='';
+        // Liste des alertes recherchées par un conducteur
         vm.alertes;
+
+        // Alerte déposée par le passager
+        vm.deposeAlerte;
         vm.users;
         vm.error;
 
+        vm.setAlertes = function(){
+
+            var data = JSON.stringify({
+                villeDepartAlerte: vm.villeDepartAlerte,
+                villeArriveeAlerte: vm.villeArriveeAlerte,
+                heureAlerte: vm.heureAlerte
+            });
+
+            $http.post('http://localhost:8000/api/authenticate/alertes', data)
+            .success(function(deposeAlerte) {
+                console.log(deposeAlerte);
+
+                $rootScope.deposeAlerte = deposeAlerte;
+                $state.go('home.passager'); // aller à la liste des résultats   
+                           
+            })            
+            .error(function(data, status, header, config) {
+                vm.error = data;
+            });
+        }
         vm.getAlertes = function(){
 
             $http.get('http://localhost:8000/api/authenticate/alertes/'+ vm.villeDepart )

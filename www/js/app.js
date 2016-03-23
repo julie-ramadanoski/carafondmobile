@@ -71,10 +71,10 @@ angular.module('carafond', ['ionic', 'satellizer'])
   $authProvider.loginUrl = 'http://localhost:8000/api/authenticate';
   
   // Setup for the $httpInterceptor
-  //$provide.factory('redirectWhenLoggedOut', redirectWhenLoggedOut);
+  $provide.factory('redirectWhenLoggedOut', redirectWhenLoggedOut);
 
   // Push the new factory onto the $http interceptor array
-  //$httpProvider.interceptors.push('redirectWhenLoggedOut');
+  $httpProvider.interceptors.push('redirectWhenLoggedOut');
 
     // Définition de la homePage
     $stateProvider.state('auth',{
