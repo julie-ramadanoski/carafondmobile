@@ -4,9 +4,10 @@
     </div>
   
   <ion-content class="padding has-subheader">
-  {{currentUser}}
 <!--     soit le conducteur n'a pas déposé d'alerte pour ce jour -->
-  <div ng-hide="deposeAlerte">
+
+
+  <div ng-hide="currentUser.alertes">
     <div class="list">
       <label class="item item-input item-stacked-label">
         <span class="input-label">Ville de départ</span>
@@ -28,11 +29,11 @@
 
 <!--     soit le conducteur a déposée une alerte qui s'affiche ici et peut la supprimer -->
   
-  <div ng-show="deposeAlerte">
+  <div ng-show="currentUser.alertes">
       <h4>Mon alerte</h4>
-      <p>Départ {{ deposeAlerte.villeDepartAlerte }}</p>
-      <p>Arrivée {{ deposeAlerte.villeArriveeAlerte }}</p>
-      <p>Destination {{ deposeAlerte.heureAlerte }}<p>                
+      <p>Départ  {{ currentUser.alertes[0].etape_depart.ville.nomVille  }}</p>
+      <p>Arrivée {{ currentUser.alertes[0].etape_arrivee.ville.nomVille }}</p>
+      <p>Destination {{ currentUser.alertes[0].heureAlerte }}<p>
       <button class="button button-assertive" ng-click="user.suppAlerte()">
         supprimer
       </button>
