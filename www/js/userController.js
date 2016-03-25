@@ -18,12 +18,31 @@
         vm.heureAlerte='';
         // Liste des alertes recherchées par un conducteur
         vm.alertes;
-
         // Alerte déposée par le passager
-        vm.deposeAlerte;
         vm.users;
         vm.error;
 
+
+        vm.suppAlerte = function(){
+
+            var data = JSON.stringify({
+                idAlerte: $rootScope.currentUser.user.alertes[0].id
+            });
+
+            $http.post('http://localhost:8000/api/authenticate/alertes/delete', data)
+            .success(function(result) {
+                console.log(result);
+
+                $rootScope.currentUser.user.alertes ="";
+
+                $state.go('home.conducteur'); // aller à la liste des résultats   
+                           
+            })            
+            .error(function(data, status, header, config) {
+                vm.error = data;
+            });
+
+        }
         vm.setAlertes = function(){
 
             var data = JSON.stringify({
@@ -36,12 +55,32 @@
             .success(function(deposeAlerte) {
                 console.log(deposeAlerte);
 
-                $rootScope.deposeAlerte = deposeAlerte;
-                $state.go('home.passager'); // aller à la liste des résultats   
+                $rootScope.currentUser.user.alertes = deposeAlerte;
+
+                $state.go('home.conducteur'); // aller à la liste des résultats   
                            
             })            
             .error(function(data, status, header, config) {
                 vm.error = data;
+                $state.go('home.conducteur'); 
+            });
+        }
+        vm.updateDepose = function(){
+
+            $http.get('http://localhost:8000/api/authenticate/user')
+            .success(function(user) {
+                var user = JSON.stringify(user);
+
+                localStorage.setItem('user', user);
+
+                $rootScope.authenticated = true;
+                $rootScope.currentUser = user;
+                $state.go('home.passager');   
+                           
+            })            
+            .error(function(data, status, header, config) {
+                vm.error = data;
+                $state.go('home.conducteur'); 
             });
         }
         vm.getAlertes = function(){

@@ -25,6 +25,7 @@ angular.module('carafond', ['ionic', 'satellizer'])
         if(window.StatusBar) {
             StatusBar.styleDefault();
         }
+       
         // $stateChangeStart is fired whenever the state changes. We can use some parameters
         // such as toState to hook into details about the state as it is changing
         $rootScope.$on('$stateChangeStart', function(event, toState) {
@@ -88,7 +89,8 @@ angular.module('carafond', ['ionic', 'satellizer'])
      abstract: true,
       /* views: {
         'home' :{*/
-          templateUrl: 'templates/home.html'
+          templateUrl: 'templates/home.html',
+          controller: 'UserController as user'
         /*}
       }*/
     })
@@ -119,6 +121,7 @@ angular.module('carafond', ['ionic', 'satellizer'])
           controller: 'UserController as user'
         }
       }
+      
     });
 
   function redirectWhenLoggedOut($q, $injector) {
@@ -156,6 +159,4 @@ angular.module('carafond', ['ionic', 'satellizer'])
       }
     }
   };
-
-
 });

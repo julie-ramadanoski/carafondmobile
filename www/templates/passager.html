@@ -2,12 +2,10 @@
      <div class="bar bar-subheader" >
       <h2 class="title">Déposer une alerte</h2>
     </div>
-  
   <ion-content class="padding has-subheader">
 <!--     soit le conducteur n'a pas déposé d'alerte pour ce jour -->
 
-
-  <div ng-hide="currentUser.alertes">
+  <div ng-hide="currentUser.user.alertes[0].id">
     <div class="list">
       <label class="item item-input item-stacked-label">
         <span class="input-label">Ville de départ</span>
@@ -25,20 +23,23 @@
     <button class="button button-block button-positive" ng-click="user.setAlertes()">
       Confirmer
     </button> 
+
   </div>
 
 <!--     soit le conducteur a déposée une alerte qui s'affiche ici et peut la supprimer -->
   
-  <div ng-show="currentUser.alertes">
+  <div ng-show="currentUser.user.alertes[0].id">
       <h4>Mon alerte</h4>
-      <p>Départ  {{ currentUser.alertes[0].etape_depart.ville.nomVille  }}</p>
-      <p>Arrivée {{ currentUser.alertes[0].etape_arrivee.ville.nomVille }}</p>
-      <p>Destination {{ currentUser.alertes[0].heureAlerte }}<p>
+      <p>Départ  {{ currentUser.user.alertes[0].etape_depart.ville.nomVille  }}</p>
+      <p>Arrivée {{ currentUser.user.alertes[0].etape_arrivee.ville.nomVille }}</p>
+      <p>Destination {{ currentUser.user.alertes[0].heureAlerte }}<p>
       <button class="button button-assertive" ng-click="user.suppAlerte()">
         supprimer
       </button>
   </div> 
-
+  <div class="buttons" style="margin-bottom: 10px">
+      <button class="button button-assertive" ng-click="user.logout()">Logout</button>
+  </div>
     
   </ion-content>
 
