@@ -5,6 +5,7 @@
     </div>
 
     <ion-content class="padding has-subheader">
+    <h4>Bonjour {{ currentUser.user.name}}</h4>
     
     <div class="list list-inset">    
         <label class="item item-input">
@@ -20,16 +21,6 @@
       Trouver !
     </button>
     
-    <h4>Bonjour {{ currentUser.name}}</h4>
-    <div class="buttons" style="margin-bottom: 10px">
-            <button class="button button-assertive" ng-click="user.logout()">Logout</button>
-        </div>
-        <ul class="list-group" ng-if="user.users">
-            <li class="list-group-item" ng-repeat="user in user.users">
-                <h4>{{user.name}}</h4>
-                <h5>{{user.email}}</h5>
-            </li>
-        </ul>    
       
   </ion-content>
 </ion-view>

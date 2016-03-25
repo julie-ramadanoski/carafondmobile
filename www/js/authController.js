@@ -29,7 +29,7 @@
                 // user so that we can flatten the promise chain
                 function() {
                     
-                    return $http.get('http://localhost:8000/api/authenticate/user');
+                    return $http.get('http://univoiturage.florian-guillot.fr/api/authenticate/user');
 
                 }, 
                 // Handle errors
@@ -45,7 +45,8 @@
             // Because we returned the $http.get request in the $auth.login
             // promise, we can chain the next promise to the end here
             .then(function(response) {
-                if(response){
+               
+                if(response){   
 
                     // Stringify the returned data to prepare it
                     // to go into local storage
@@ -73,6 +74,27 @@
                 }
             });
             
+        }
+
+        // We would normally put the logout method in the same
+        // spot as the login method, ideally extracted out into
+        // a service. For this simpler example we'll leave it here
+        vm.logout = function() {
+
+            $auth.logout().then(function() {
+
+                // Remove the authenticated user from local storage
+                localStorage.removeItem('user');
+
+                // Flip authenticated to false so that we no longer
+                // show UI elements dependant on the user being logged in
+                $rootScope.authenticated = false;
+
+                // Remove the current user info from rootscope
+                $rootScope.currentUser = null;
+
+                $state.go('auth');
+            });
         }
     }
 

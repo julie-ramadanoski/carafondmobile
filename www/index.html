@@ -27,11 +27,13 @@
 
   <body ng-app="carafond">
 
+        
     <ion-header-bar class="bar-assertive" > 
         
         <h1 class="title">CarAFond</h1>
-        <div class="buttons" >
-            <button class="button">déconnexion</button>
+
+        <div class="buttons" ng-show="authenticated" ng-controller="AuthController as auth">
+            <button class="button" ng-click="auth.logout()">déconnexion</button>
         </div>
     </ion-header-bar>
     

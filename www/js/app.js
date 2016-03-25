@@ -64,12 +64,13 @@ angular.module('carafond', ['ionic', 'satellizer'])
         });
     });
 })
-.config(function($stateProvider, $urlRouterProvider, $authProvider, $httpProvider, $httpProvider, $provide){
+.config(function($stateProvider, $urlRouterProvider, $authProvider, $httpProvider, $httpProvider, $provide, $ionicConfigProvider){
 
+  $ionicConfigProvider.tabs.position('bottom'); // other values: top
   // Définition route par défault
   $urlRouterProvider.otherwise('/auth');
 
-  $authProvider.loginUrl = 'http://localhost:8000/api/authenticate';
+  $authProvider.loginUrl = 'http://univoiturage.florian-guillot.fr/api/authenticate';
   
   // Setup for the $httpInterceptor
   $provide.factory('redirectWhenLoggedOut', redirectWhenLoggedOut);
@@ -86,13 +87,9 @@ angular.module('carafond', ['ionic', 'satellizer'])
     
     .state('home', {
       url: '/home',
-     abstract: true,
-      /* views: {
-        'home' :{*/
-          templateUrl: 'templates/home.html',
-          controller: 'UserController as user'
-        /*}
-      }*/
+      abstract: true,
+      templateUrl: 'templates/home.html',
+      controller: 'UserController as user'
     })
     .state('home.conducteur', {
       url: '/conducteur',
@@ -108,7 +105,7 @@ angular.module('carafond', ['ionic', 'satellizer'])
       views: {
         // est relié à la vue conducteur
         'conducteur': { 
-          templateUrl: "templates/alertes.html" ,
+          templateUrl: "templates/alertes.html",
           controller: 'UserController as user'
         }
       }
@@ -141,7 +138,9 @@ angular.module('carafond', ['ionic', 'satellizer'])
 
           // Loop through each rejection reason and redirect to the login
           // state if one is encountered
+          
           angular.forEach(rejectionReasons, function(value, key) {
+            if(rejection.data != null){
 
               if(rejection.data.error === value) {
 
@@ -153,6 +152,7 @@ angular.module('carafond', ['ionic', 'satellizer'])
                   // Send the user to the auth state so they can login
                   $state.go('auth');
               }
+            }
           });
 
           return $q.reject(rejection);
