@@ -15,6 +15,8 @@ https://github.com/phonegap/phonegap-start/blob/master/www/config.xml-->
   <content src="index.html"/>
   <allow-navigation href="*" />
   <allow-intent href="*" />
+  <allow-intent href="tel:*" />
+  <access launch-external="yes" origin="tel:*" />
   <access origin="*"/>
   
 
