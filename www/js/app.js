@@ -58,7 +58,7 @@ angular.module('carafond', ['ionic', 'satellizer'])
                       event.preventDefault();
 
                       // go to the "main" state which in our case is users
-                      $state.go('home');
+                      $state.go('home.conducteur');
                 }
             }
         });
@@ -71,7 +71,7 @@ angular.module('carafond', ['ionic', 'satellizer'])
   $urlRouterProvider.otherwise('/auth');
 
   $authProvider.loginUrl = 'http://univoiturage.florian-guillot.fr/api/authenticate';
-  
+  //$authProvider.withCredentials = true;
   // Setup for the $httpInterceptor
   $provide.factory('redirectWhenLoggedOut', redirectWhenLoggedOut);
 
@@ -80,9 +80,9 @@ angular.module('carafond', ['ionic', 'satellizer'])
 
     // Définition de la homePage
     $stateProvider.state('auth',{
-    url:'/auth',
-    templateUrl:'templates/auth.html',
-    controller: 'AuthController as auth'
+      url:'/auth',
+      templateUrl:'templates/auth.html',
+      controller: 'AuthController as auth'
     })
     
     .state('home', {
@@ -95,7 +95,7 @@ angular.module('carafond', ['ionic', 'satellizer'])
       url: '/conducteur',
       views: {
         'conducteur': {
-          templateUrl: "templates/conducteur.html" ,
+          templateUrl: "templates/conducteur.html",
           controller: 'UserController as user'
         }
       }

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+  <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 
 <!-- Exemple de configuration
 https://github.com/phonegap/phonegap-start/blob/master/www/config.xml-->
@@ -13,18 +13,17 @@ https://github.com/phonegap/phonegap-start/blob/master/www/config.xml-->
     </author>
 
   <content src="index.html"/>
-  <access origin="*" subdomains="true" />
-  <!-- Allow tel: links to open the dialer -->
-  <allow-intent href="tel:*" />
-  <!-- Allow links to "http://univoiturage.florian-guillot.fr/* to open in a browser -->
+  <allow-navigation href="*" />
   <allow-intent href="*" />
+  <access origin="*"/>
+  
 
   <preference name="webviewbounce" value="false"/>
   <preference name="UIWebViewBounce" value="false"/>
   <preference name="DisallowOverscroll" value="true"/>
   <preference name="android-minSdkVersion" value="10"/>
   <preference name="android-maxSdkVersion" value="23"/>
-  <preference name="android-targetSdkVersion" value="23"/>
+  <preference name="android-targetSdkVersion" value="10"/>
   <preference name="BackupWebStorage" value="none"/>
   
   <!-- Spash Screen -->
