@@ -25,7 +25,7 @@ angular.module('carafond', ['ionic', 'satellizer'])
         if(window.StatusBar) {
             StatusBar.styleDefault();
         }
-       
+  
         // $stateChangeStart is fired whenever the state changes. We can use some parameters
         // such as toState to hook into details about the state as it is changing
         $rootScope.$on('$stateChangeStart', function(event, toState) {
@@ -95,8 +95,7 @@ angular.module('carafond', ['ionic', 'satellizer'])
       url: '/conducteur',
       views: {
         'conducteur': {
-          templateUrl: "templates/conducteur.html",
-          controller: 'UserController as user'
+          templateUrl: "templates/conducteur.html"
         }
       }
     })
@@ -105,8 +104,7 @@ angular.module('carafond', ['ionic', 'satellizer'])
       views: {
         // est relié à la vue conducteur
         'conducteur': { 
-          templateUrl: "templates/alertes.html",
-          controller: 'UserController as user'
+          templateUrl: "templates/alertes.html"
         }
       }
     })
@@ -114,8 +112,7 @@ angular.module('carafond', ['ionic', 'satellizer'])
       url: '/passager',
       views: {
         'passager': {
-          templateUrl: "templates/passager.html",
-          controller: 'UserController as user'
+          templateUrl: "templates/passager.html"
         }
       }
       
