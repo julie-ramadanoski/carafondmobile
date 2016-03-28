@@ -6,12 +6,20 @@
 
     angular
         .module('carafond')
-        .controller('AuthController', function AuthController($auth, $state, $http, $rootScope) {
+        .controller('AuthController', function AuthController($auth, $state, $http, $rootScope, $scope, $ionicPopup) {
 
             var vm = this;
 
-            vm.loginError = false;
-            vm.loginErrorText;
+            // déclarer pop up alerte (btn OK seulement)
+            $scope.showAlertConnexion = function() {
+                var alertPopup = $ionicPopup.alert({
+                title: 'Connexion impossible',
+                template: 'Vérifiez votre login et mot de passe'
+            });
+                /*alertPopup.then(function(res) {
+                console.log('Thank you for not eating my delicious ice cream cone');
+                });*/
+            };
 
             vm.login = function() {
 
@@ -20,54 +28,40 @@
                     password: vm.password
                 }
 
+                $scope.loading=true;
+
                 $auth.login(credentials)
                 .then( 
                     // Return an $http request for the now authenticated
                     // user so that we can flatten the promise chain
-                    function() {
-                        
+                    function() {                        
                         return $http.get('http://univoiturage.florian-guillot.fr/api/authenticate/user');
-
                     }, 
                     // Handle errors
-                    function(error) {
-                        
-                        vm.loginError = true;
-                        
-                        if (error.data){  
-                            vm.loginErrorText = error.data.error;                
-                        }
+                    function(error) { 
+                        $scope.loading=false;                       
+                        $scope.showAlertConnexion();                        
                     }
                 )
                 // Because we returned the $http.get request in the $auth.login
                 // promise, we can chain the next promise to the end here
                 .then(function(response) {
+
+                    $scope.loading=false;
                    
                     if(response){   
 
-                        // Stringify the returned data to prepare it
-                        // to go into local storage
                         var user = JSON.stringify(response.data.user);
 
                         // Set the stringified user data into local storage
                         localStorage.setItem('user', user);
-
-                        // The user's authenticated state gets flipped to
-                        // true so we can now show parts of the UI that rely
-                        // on the user being logged in
                         $rootScope.authenticated = true;
-
-                        // Putting the user's data on $rootScope allows
-                        // us to access it anywhere across the app
                         $rootScope.currentUser = response.data.user;
-                        // Everything worked out so we can now redirect to
-                        // the users state to view the data
+
                         $state.go('home.conducteur');
 
                     }else{
-
                       console.log("Pas de réponse serveur");
-
                     }
                 });
                 

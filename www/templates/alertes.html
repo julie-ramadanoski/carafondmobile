@@ -5,17 +5,18 @@
     </div>
     <ion-content class="padding has-subheader">
    
-		<ul class="list-group" ng-if="alertes">
+		<ul class="list-group" ng-if="alertes">				
 	        <li class="list-group-item" ng-repeat="alerte in alertes">
-	            <h4>Nom {{alerte.name}}</h4>
-	            <p>Depart {{ alerte.nomVille }}
-	            <p>Destination {{alerte.etape_arrivee.ville.nomVille}}<p>                
-	            <a href="tel:{{alerte.telMobMemb}}"><button class="button button-positive">
+	            <h4>pseudo : {{ alerte.membre.pseudoMemb }}</h4>
+	            <p>Depart : {{ alerte.etape_depart.ville.nomVille }}
+	            <p>Destination : {{ alerte.etape_arrivee.ville.nomVille }}<p>                
+	            <a href="tel:{{ alerte.telMobMemb }}"><button class="button button-positive">
 	              appeller
 	            </button></a>
 
 	        </li>
 	    </ul>
+	    <p ng-if="alertes == 0"> Il n'y a pas d'alertes correspondantes à votre recherche</p>
 
 	</ion-content>
 </ion-view>

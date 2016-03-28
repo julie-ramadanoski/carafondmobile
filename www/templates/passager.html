@@ -23,7 +23,11 @@
     <button class="button button-block button-positive" ng-click="user.setAlertes()">
       Confirmer
     </button> 
-
+    
+    <div class="alert alert-danger" ng-if="user.errorSuppr">
+      <strong>Info : </strong> {{user.errorSuppr}}
+      <br>
+    </div>
   </div>
 
 <!--     soit le conducteur a déposée une alerte qui s'affiche ici et peut la supprimer -->
@@ -37,7 +41,9 @@
         supprimer
       </button>
   </div> 
-  
+
+  <ion-spinner icon="spiral" ng-if="loading" class="spinner-assertive"></ion-spinner>
+
   </ion-content>
 
 </ion-view>

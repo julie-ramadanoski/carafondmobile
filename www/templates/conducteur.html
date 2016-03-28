@@ -14,14 +14,12 @@
             <input type="text" placeholder="Ville de départ"  ng-model="user.villeDepart">
         </label>
     </div>
-    <div class="alert alert-danger" ng-if="user.error">
-        <strong>There was an error: </strong> {{user.error.error}}
-        <br>Please go back and login again
-    </div>
     <button class="button button-block button-positive" ng-click="user.getAlertes()">
       Trouver !
     </button>
-    
+    <ion-spinner icon="spiral" ng-if="loading" class="spinner-assertive"></ion-spinner>
+
+
       
   </ion-content>
 </ion-view>

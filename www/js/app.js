@@ -7,6 +7,19 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 
+/*
+* Compatibilité anciennes version android sur le JSON.parse
+*/
+JSON.originalParse = JSON.parse;
+JSON.parse = function (text) {
+  if (text) {
+    return JSON.originalParse(text);
+  } else {
+    console.log('no longer crashing on null value but just returning null');
+    return null;
+  }
+}
+
 angular.module('carafond', ['ionic', 'satellizer'])
 
 .run(function($ionicPlatform, $rootScope, $state) {
