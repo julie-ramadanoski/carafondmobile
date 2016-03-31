@@ -18,7 +18,7 @@ JSON.parse = function (text) {
     console.log('no longer crashing on null value but just returning null');
     return null;
   }
-}
+};
 
 angular.module('carafond', ['ionic', 'satellizer'])
 

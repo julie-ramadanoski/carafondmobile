@@ -36,7 +36,7 @@
       <h4>Mon alerte</h4>
       <p>Départ  {{ currentUser.alertes[0].etape_depart.ville.nomVille  }}</p>
       <p>Arrivée {{ currentUser.alertes[0].etape_arrivee.ville.nomVille }}</p>
-      <p>Destination {{ currentUser.alertes[0].heureAlerte }}<p>
+      <p>avant {{ currentUser.alertes[0].heureAlerte }}<p>
       <button class="button button-assertive" ng-click="user.suppAlerte()">
         supprimer
       </button>

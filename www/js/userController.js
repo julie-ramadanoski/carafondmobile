@@ -28,6 +28,47 @@
                 $rootScope.authenticated = true; 
             }
 
+            // Une géolocatlisation
+            vm.villeGeoloc = $scope.geoloc();
+
+            // Retourne une ville
+            $scope.geoloc = function(){
+                // onSuccess Callback
+                // This method accepts a Position object, which contains the
+                // current GPS coordinates
+                //
+                var onSuccess = function(position) {
+                    $scope.loading=true;
+
+                    $http.get('http://univoiturage.florian-guillot.fr/api/authenticate/coord/'+ position.coords.latitude +'/'+  position.coords.longitude )
+                    .success(function(result) {
+
+                        $scope.loading=false;
+
+                        // Vider les alertes et mettre à jour le scope utilisateur
+                        vm.villeGeoloc = result;
+                        $scope.villeGeoloc = vm.villeGeoloc;
+
+                        // Sauvegarder l'utilisateur mis à jour
+                        var villeGeoloc = JSON.stringify(vm.villeGeoloc);
+                        localStorage.setItem('villeGeoloc', villeGeoloc);
+                                   
+                    })            
+                    .error(function(data, status, header, config) {
+                        $scope.loading=false;
+                        $scope.showAlertCoord(data);
+                    });
+                }
+
+                // onError Callback receives a PositionError object
+                //
+                function onError(error) {
+                    alert('code: '    + error.code    + '\n' +
+                          'message: ' + error.message + '\n');
+                }
+
+                navigator.geolocation.getCurrentPosition(onSuccess, onError);
+            }
 
             $scope.showAlertVilleInexistante = function(error) {
                 var msg = error?error.error:'Une ou plusieurs villes sont mal orthographiées ou non répertoriées';
