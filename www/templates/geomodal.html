@@ -1,0 +1,11 @@
+<ion-modal-view class="modal">
+    <ion-header-bar class="bar bar-header bar-positive">
+        <h1 class="title">Choisissez une ville</h1>
+        <div class="button button-clear" ng-click="modal.hide()"><span class="icon ion-close"></span></div>
+    </ion-header-bar>
+    <ion-content class="has-header padding">
+        <ul class="list">
+            <li class="item" ng-repeat="ville in user.villeGeoloc.villes" ng-click="user.choixModal(ville.nomVille)">{{ville.nomVille}}</li>
+        </ul>
+    </ion-content>
+</ion-modal-view>

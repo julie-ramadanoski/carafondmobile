@@ -6,7 +6,7 @@
 
     angular
         .module('carafond')
-        .controller('UserController', function UserController($http, $auth, $rootScope, $scope, $state, $ionicPopup) {
+        .controller('UserController', function UserController($http, $auth, $rootScope, $scope, $state, $ionicPopup, $ionicModal) {
 
             var vm = this;
 
@@ -14,6 +14,17 @@
             vm.villeDepartAlerte='';
             vm.villeArriveeAlerte='';
             vm.heureAlerte='';
+            vm.zoneKm = 5;
+            vm.villeGeoloc = JSON.parse(localStorage.getItem('villeGeoloc'));
+            // Load the modal from the given template URL
+            $ionicModal.fromTemplateUrl('../templates/geomodal.html', function($ionicModal) {
+                vm.modal = $ionicModal;
+            },
+            {   // Use our scope for the scope of the modal to keep it simple
+                scope: $scope,
+                // The animation we want to use for the modal entrance
+                animation: 'slide-in-up'
+            });  
 
             // Liste des alertes recherchées par un conducteur
             vm.alertes = JSON.parse(localStorage.getItem('saveAlertes'));
@@ -28,47 +39,70 @@
                 $rootScope.authenticated = true; 
             }
 
-            // Une géolocatlisation
-            vm.villeGeoloc = $scope.geoloc();
-
-            // Retourne une ville
-            $scope.geoloc = function(){
-                // onSuccess Callback
-                // This method accepts a Position object, which contains the
-                // current GPS coordinates
-                //
+            // Retourne une ville selon la géolocation
+            vm.geoloc = function(){
+                // onSuccess Callback current GPS coordinates
                 var onSuccess = function(position) {
-                    $scope.loading=true;
+                    console.log(vm.zoneKm);
 
-                    $http.get('http://univoiturage.florian-guillot.fr/api/authenticate/coord/'+ position.coords.latitude +'/'+  position.coords.longitude )
+                    $http.get('http://localhost:8000/api/authenticate/coord/'+ position.coords.latitude +'/'+  position.coords.longitude  +'/'+ vm.zoneKm)
                     .success(function(result) {
 
                         $scope.loading=false;
 
                         // Vider les alertes et mettre à jour le scope utilisateur
-                        vm.villeGeoloc = result;
-                        $scope.villeGeoloc = vm.villeGeoloc;
+                        if (result.villes.length != 0 || vm.zoneKm > 20 ){
 
-                        // Sauvegarder l'utilisateur mis à jour
-                        var villeGeoloc = JSON.stringify(vm.villeGeoloc);
-                        localStorage.setItem('villeGeoloc', villeGeoloc);
-                                   
+                            vm.villeGeoloc = result;
+                            $scope.villeGeoloc = vm.villeGeoloc;
+                            // Sauvegarder la ville géolocalisée
+                            var strGeoloc = JSON.stringify(vm.villeGeoloc);
+                            localStorage.setItem('villeGeoloc', strGeoloc);
+
+                            // Si plusieurs résultat afficher popup
+                            if(result.villes.length > 1 ){                               
+
+                                // au click accéder à la page de résultat
+                                vm.modal.show();
+
+                            // Sinon acceder à la page des résultat de la ville
+                            } else {
+                                vm.villeDepart = result.villes[0]['nomVille'];
+                                vm.getAlertes();                                
+                            }
+                            
+                        } else {
+                            vm.zoneKm +=3;
+                            vm.geoloc();
+                        }         
                     })            
                     .error(function(data, status, header, config) {
-                        $scope.loading=false;
+                        $scope.loading = false;
                         $scope.showAlertCoord(data);
                     });
                 }
-
                 // onError Callback receives a PositionError object
-                //
                 function onError(error) {
-                    alert('code: '    + error.code    + '\n' +
-                          'message: ' + error.message + '\n');
+                    $scope.loading = false;
+                    $scope.showAlertCoord(error);
                 }
-
+                $scope.loading=true;  
                 navigator.geolocation.getCurrentPosition(onSuccess, onError);
             }
+            vm.choixModal = function(ville){
+                vm.modal.hide();
+                vm.villeDepart = ville;
+                vm.getAlertes();
+            }
+            // Retourne une ville
+            $scope.showAlertCoord = function(error) {
+                var msg = error?error.error:'Votre position n\'a pu être définie';
+                msg += error.message?error.message:'';
+                var alertPopup = $ionicPopup.alert({
+                    title: 'Géolocalisation',
+                    template: msg
+                });
+            };
 
             $scope.showAlertVilleInexistante = function(error) {
                 var msg = error?error.error:'Une ou plusieurs villes sont mal orthographiées ou non répertoriées';
@@ -77,6 +111,7 @@
                     template: msg
                 });
             };
+
             $scope.showAlertSuppr = function(error) {
                 var alertPopup = $ionicPopup.alert({
                     title: 'Erreur Suppression',
