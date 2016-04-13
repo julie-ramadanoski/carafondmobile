@@ -84,6 +84,7 @@ angular.module('carafond', ['ionic', 'satellizer','angucomplete-alt'])
   $urlRouterProvider.otherwise('/auth');
 
   $authProvider.loginUrl = 'http://univoiturage.florian-guillot.fr/api/authenticate';
+  // $authProvider.loginUrl = 'http://univoiturage.florian-guillot.fr/api/authenticate';
   //$authProvider.withCredentials = true;
   // Setup for the $httpInterceptor
   $provide.factory('redirectWhenLoggedOut', redirectWhenLoggedOut);

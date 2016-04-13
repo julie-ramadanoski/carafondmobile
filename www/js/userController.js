@@ -40,7 +40,7 @@
             }
 
             $scope.autocompleteVille = function(userInputString, timeoutPromise) {
-              return $http.get('http://localhost:8000/api/authenticate/autocomplete/ville?term='+userInputString);
+              return $http.get('http://univoiturage.florian-guillot.fr/api/authenticate/autocomplete/ville?term='+userInputString);
             }
             // Retourne une ville selon la géolocation
             vm.geoloc = function(){
@@ -48,7 +48,7 @@
                 var onSuccess = function(position) {
                     console.log(vm.zoneKm);
 
-                    $http.get('http://localhost:8000/api/authenticate/coord/'+ position.coords.latitude +'/'+  position.coords.longitude  +'/'+ vm.zoneKm)
+                    $http.get('http://univoiturage.florian-guillot.fr/api/authenticate/coord/'+ position.coords.latitude +'/'+  position.coords.longitude  +'/'+ vm.zoneKm)
                     .success(function(result) {
 
                         $scope.loading=false;
