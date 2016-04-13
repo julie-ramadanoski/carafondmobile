@@ -8,12 +8,22 @@
     
     <h4>Bonjour {{ currentUser.name }}</h4>
     
-    <div class="list list-inset">    
-      
-        <label class="item item-input">
-            <i class="icon ion-search placeholder-icon"></i>
-            <input type="text"  list="villes" placeholder="Ville de départ" ng-model="user.villeDepart">
-        </label>
+
+    <div class="autocompletion">
+        <i class="icon ion-search placeholder-icon"></i>
+        <angucomplete-alt id="autocomplete"
+          type="text"
+          placeholder="Cherchez une ville"
+          pause="100"
+          remote-url="http://localhost:8000/api/authenticate/autocomplete/ville/"
+          remote-api-handler="autocompleteVille"              
+          remote-url-data-field=""
+          title-field="value"
+          focus-out="user.getAlertes()"
+          minlength="1"
+          input-class="form-control form-control-small"
+          match-class="highlight"/>
+       <!-- <input type="text"  placeholder="Ville de départ" ng-model="user.villeDepart"> -->
     </div>
     <button class="button button-block button-positive" ng-click="user.getAlertes()">
       Trouver !

@@ -13,9 +13,9 @@
             // déclarer pop up alerte (btn OK seulement)
             $scope.showAlertConnexion = function() {
                 var alertPopup = $ionicPopup.alert({
-                title: 'Connexion impossible',
-                template: 'Vérifiez votre login et mot de passe'
-            });
+                    title: 'Connexion impossible',
+                    template: 'Vérifiez votre login et mot de passe'
+                });
                 /*alertPopup.then(function(res) {
                 console.log('Thank you for not eating my delicious ice cream cone');
                 });*/

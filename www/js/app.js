@@ -20,7 +20,7 @@ JSON.parse = function (text) {
   }
 };
 
-angular.module('carafond', ['ionic', 'satellizer'])
+angular.module('carafond', ['ionic', 'satellizer','angucomplete-alt'])
 
 .run(function($ionicPlatform, $rootScope, $state) {
     $ionicPlatform.ready(function() {

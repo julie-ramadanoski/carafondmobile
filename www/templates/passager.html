@@ -9,11 +9,42 @@
     <div class="list">
       <label class="item item-input item-stacked-label">
         <span class="input-label">Ville de départ</span>
-        <input type="text" placeholder="Gap" ng-model="user.villeDepartAlerte">
+
+        <div class="autocompletion">
+          <i class="icon ion-search placeholder-icon"></i>
+          <angucomplete-alt id="autocompleteDepart"
+            type="text"
+            placeholder="Gap"
+            pause="100"
+            remote-url="http://localhost:8000/api/authenticate/autocomplete/ville/"
+            remote-api-handler="autocompleteVille"              
+            remote-url-data-field=""
+            title-field="value"
+            minlength="1"
+            input-class="form-control form-control-small"
+            match-class="highlight"/>
+        
+      </div>
+       <!--  <input type="text" placeholder="Gap" ng-model="user.villeDepartAlerte"> -->
       </label>
       <label class="item item-input item-stacked-label">
         <span class="input-label">Ville d'arrivée</span>
-        <input type="text" placeholder="Aix en provence" ng-model="user.villeArriveeAlerte">
+        <div class="autocompletion">
+          <i class="icon ion-search placeholder-icon"></i>
+          <angucomplete-alt id="autocompleteArrivee"
+            type="text"
+            placeholder="Aix-en-provence"
+            pause="100"
+            remote-url="http://localhost:8000/api/authenticate/autocomplete/ville/"
+            remote-api-handler="autocompleteVille"              
+            remote-url-data-field=""
+            title-field="value"
+            minlength="1"
+            input-class="form-control form-control-small"
+            match-class="highlight"/>
+        
+      </div>
+        <!-- <input type="text" placeholder="Aix en provence" ng-model="user.villeArriveeAlerte"> -->
       </label>
       <label class="item item-input item-stacked-label">
         <span class="input-label">avant</span>

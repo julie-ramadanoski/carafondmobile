@@ -1,1 +1,12 @@
 /* Empty. Add your own CSS if you like */
+.angucomplete-dropdown {
+	position: relative;
+}
+.angucomplete-holder {
+	display: inline-block;
+}
+.item-stacked-label .icon, .icon {
+    display: inline-block;
+    padding: 6px 0 0 0px;
+    vertical-align: top;
+}

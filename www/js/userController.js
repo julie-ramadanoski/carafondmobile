@@ -18,14 +18,14 @@
             vm.villeGeoloc = JSON.parse(localStorage.getItem('villeGeoloc'));
             // Load the modal from the given template URL
             $ionicModal.fromTemplateUrl('../templates/geomodal.html', function($ionicModal) {
-                vm.modal = $ionicModal;
-            },
-            {   // Use our scope for the scope of the modal to keep it simple
-                scope: $scope,
-                // The animation we want to use for the modal entrance
-                animation: 'slide-in-up'
-            });  
-
+                    vm.modal = $ionicModal;
+                },
+                {   // Use our scope for the scope of the modal to keep it simple
+                    scope: $scope,
+                    // The animation we want to use for the modal entrance
+                    animation: 'slide-in-up'
+                }
+            ); 
             // Liste des alertes recherchées par un conducteur
             vm.alertes = JSON.parse(localStorage.getItem('saveAlertes'));
             $scope.alertes = vm.alertes;
@@ -39,6 +39,9 @@
                 $rootScope.authenticated = true; 
             }
 
+            $scope.autocompleteVille = function(userInputString, timeoutPromise) {
+              return $http.get('http://localhost:8000/api/authenticate/autocomplete/ville?term='+userInputString);
+            }
             // Retourne une ville selon la géolocation
             vm.geoloc = function(){
                 // onSuccess Callback current GPS coordinates
@@ -154,8 +157,8 @@
             vm.setAlertes = function(){
 
                 var data = JSON.stringify({
-                    villeDepartAlerte: vm.villeDepartAlerte,
-                    villeArriveeAlerte: vm.villeArriveeAlerte,
+                    villeDepartAlerte: document.getElementById('autocompleteDepart_value').value,
+                    villeArriveeAlerte: document.getElementById('autocompleteArrivee_value').value,
                     heureAlerte: vm.heureAlerte
                 });
 
@@ -186,8 +189,12 @@
             vm.getAlertes = function(){
 
                 var url;
+                var result;
                 if(vm.villeDepart){
-                    url ='http://univoiturage.florian-guillot.fr/api/authenticate/alertes/'+ vm.villeDepart;                    
+                    url ='http://univoiturage.florian-guillot.fr/api/authenticate/alertes/'+ vm.villeDepart; 
+                    vm.villeDepart='';
+                }else if ( result = document.getElementById('autocomplete_value').value)  {
+                    url ='http://univoiturage.florian-guillot.fr/api/authenticate/alertes/'+ result;                  
                 }else{                    
                     url ='http://univoiturage.florian-guillot.fr/api/authenticate/alertes';
                 }
