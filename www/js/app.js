@@ -20,11 +20,10 @@ JSON.parse = function (text) {
   }
 };
 
-angular.module('carafond', ['ionic', 'satellizer','angucomplete-alt'])
+angular.module('carafond', ['ionic', 'satellizer','angucomplete'])
 
-.run(function($ionicPlatform, $rootScope, $state) {
+.run(function($ionicPlatform, $rootScope, $state, $ionicHistory) {
     $ionicPlatform.ready(function() {
-
         if(window.cordova && window.cordova.plugins.Keyboard) {
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
             // for form inputs)
@@ -44,8 +43,8 @@ angular.module('carafond', ['ionic', 'satellizer','angucomplete-alt'])
         $rootScope.$on('$stateChangeStart', function(event, toState) {
 
             // Grab the user from local storage and parse it to an object
-            var user = JSON.parse(localStorage.getItem('user'));            
-
+            var user = JSON.parse(localStorage.getItem('user'));
+            
             // If there is any user data in local storage then the user is quite
             // likely authenticated. If their token is expired, or if they are
             // otherwise not actually authenticated, they will be redirected to
@@ -80,12 +79,12 @@ angular.module('carafond', ['ionic', 'satellizer','angucomplete-alt'])
 .config(function($stateProvider, $urlRouterProvider, $authProvider, $httpProvider, $httpProvider, $provide, $ionicConfigProvider){
 
   $ionicConfigProvider.tabs.position('bottom'); // other values: top
+
   // Définition route par défault
   $urlRouterProvider.otherwise('/auth');
 
   $authProvider.loginUrl = 'http://univoiturage.florian-guillot.fr/api/authenticate';
-  // $authProvider.loginUrl = 'http://univoiturage.florian-guillot.fr/api/authenticate';
-  //$authProvider.withCredentials = true;
+
   // Setup for the $httpInterceptor
   $provide.factory('redirectWhenLoggedOut', redirectWhenLoggedOut);
 
@@ -159,13 +158,14 @@ angular.module('carafond', ['ionic', 'satellizer','angucomplete-alt'])
                   // in our array, we know we need to authenticate the user so 
                   // we can remove the current user from local storage
                   localStorage.removeItem('user');
+                  localStorage.removeItem('villeGeoloc');
+                  localStorage.removeItem('saveAlertes');
 
                   // Send the user to the auth state so they can login
                   $state.go('auth');
               }
             }
           });
-
           return $q.reject(rejection);
       }
     }
