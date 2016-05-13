@@ -3,21 +3,56 @@ To customize the look and feel of Ionic, you can override the variables
 in ionic's _variables.scss file.
 
 For example, you might change some of the default colors:
-
+*/
 $light:                           #fff !default;
 $stable:                          #f8f8f8 !default;
-$positive:                        #387ef5 !default;
-$calm:                            #11c1f3 !default;
-$balanced:                        #33cd5f !default;
-$energized:                       #ffc900 !default;
-$assertive:                       #ef473a !default;
+$positive:                        #328dcc !default;
+$calm:                            #48ba6e !default;
+$balanced:                        #18b99a !default;
+$energized:                       #ea8b38 !default;
+$assertive:                       #dd393c !default;
 $royal:                           #886aea !default;
 $dark:                            #444 !default;
-*/
+
+$tabs-height:					90px;
+$tabs-icon-size:				45px;
 
 // The path for our ionicons font files, relative to the built CSS in www/css
 $ionicons-font-path: "../lib/ionic/fonts" !default;
 
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
+
+.tabs {
+	border: none;
+	background: none;
+}
+.tab-item {
+	border: 2px solid $calm;
+	height: 90%;
+	margin: 0 8%;
+	opacity: 0.5;
+	border-radius: 10px;
+	.icon, .tab-title {		
+	    line-height: 0.8;
+	    vertical-align: top;
+	    &:before {
+	    font-size: $tabs-icon-size - 8;
+	    }
+	}
+}
+.tabs-striped {
+	.tab-item {
+		&.tab-item-active,
+		&.active,
+		&.activated {
+			margin-top: 0;
+			color: $dark;
+			border-style: solid;
+			border-width: $tabs-striped-border-width;
+			border-color: $calm;
+		}
+	}
+}
+ .md-scroll-mask { position: initial;}
 

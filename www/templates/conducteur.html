@@ -1,7 +1,7 @@
 
  <ion-view view-title="conducteur">
     <div class="bar bar-subheader" >
-      <h2 class="title">Rechercher passagers</h2>
+      <h2 class="title">Rechercher des passagers</h2>
     </div>
 
     <ion-content class="padding has-subheader">
@@ -19,16 +19,15 @@
           remote-api-handler="autocompleteVille"              
           remote-url-data-field=""
           title-field="value"
-          focus-out="user.getAlertes()"
           minlength="1"
           input-class="form-control form-control-small"
           match-class="highlight"/>
        <!-- <input type="text"  placeholder="Ville de départ" ng-model="user.villeDepart"> -->
     </div>
-    <button class="button button-block button-positive" ng-click="user.getAlertes()">
+    <button class="button button-block button-calm" ng-click="user.getAlertes()">
       Trouver !
     </button>
-    <button class="button button-block button-balanced" ng-click="user.geoloc()">
+    <button class="button button-block button-positive" ng-click="user.geoloc()">
       Ma position
     </button>
     <ion-spinner icon="spiral" ng-if="loading" class="spinner-assertive"></ion-spinner>

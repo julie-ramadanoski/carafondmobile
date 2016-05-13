@@ -10,7 +10,7 @@
 
     <!-- compiled css output -->
     <link href="css/ionic.app.css" rel="stylesheet">
-    <link href="lib/angucomplete-alt/angucomplete-alt.css"  rel="stylesheet">
+    <link href="lib/angucomplete/angucomplete.css"  rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
 
     <!-- ionic/angularjs js -->
@@ -27,16 +27,18 @@
     <script src="js/authcontroller.js"></script>
     <script src="js/usercontroller.js"></script>
     <!-- angucomplete-alt js
-    <script src="lib/angucomplete-alt/dist/angucomplete-alt.min.js"></script> -->
-    <script src="lib/angucomplete-alt/angucomplete-alt.js"></script>
+    <script src="lib/angucomplete-alt/angucomplete-alt.js"></script>-->
+    <script src="lib/angucomplete/dist/angucomplete.min.js"></script> 
 
   </head>
 
   <body ng-app="carafond">
 
         
-    <ion-header-bar class="bar-assertive" > 
-        
+    <ion-header-bar class="bar-balanced">
+        <div class="buttons" ng-show="user.ionicHistory.currentView().url != '/auth' && user.ionicHistory.backView() != null" ng-controller="UserController as user">
+           <button class="button" ng-click="goBack()"><i class="ion-arrow-left-c"></i></button>
+        </div>
         <h1 class="title">CarAFond</h1>
 
         <div class="buttons" ng-show="authenticated" ng-controller="AuthController as auth">
@@ -45,6 +47,20 @@
     </ion-header-bar>
     
     <ion-nav-view></ion-nav-view>  
+
+    <script id="geomodal.html" type="text/ng-template">
+        <ion-modal-view class="modal">
+            <ion-header-bar class="bar bar-header bar-positive">
+                <h1 class="title">Choisissez une ville</h1>
+                <div class="button button-clear" ng-click="modal.hide()"><span class="icon ion-close"></span></div>
+            </ion-header-bar>
+            <ion-content class="has-header padding">
+                <ul class="list">
+                    <li class="item" ng-repeat="ville in user.villeGeoloc.villes" ng-click="user.choixModal(ville.nomVille)">{{ville.nomVille}}</li>
+                </ul>
+            </ion-content>
+        </ion-modal-view>
+    </script>
 
   </body>
 </html>
