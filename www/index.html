@@ -36,7 +36,7 @@
 
         
     <ion-header-bar class="bar-balanced">
-        <div class="buttons" ng-show="user.ionicHistory.currentView().url != '/auth' && user.ionicHistory.backView() != null" ng-controller="UserController as user">
+        <div class="buttons" ng-hide="user.ionicHistory.currentView().url == '/auth' || user.ionicHistory.backView() == null  || user.ionicHistory.backView().url == '/auth'" ng-controller="UserController as user">
            <button class="button" ng-click="goBack()"><i class="ion-arrow-left-c"></i></button>
         </div>
         <h1 class="title">CarAFond</h1>
