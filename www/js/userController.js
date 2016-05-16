@@ -18,6 +18,7 @@
         vm.heureAlerte          = '';
         vm.zoneKm               = 5;
         vm.villeGeoloc          = JSON.parse(localStorage.getItem('villeGeoloc'));
+        vm.domaine              = "http://localhost:8000"; // http://univoiturage.florian-guillot.fr
 
         // Load the modal from the given template URL
         $ionicModal.fromTemplateUrl('geomodal.html',
@@ -45,7 +46,7 @@
             $ionicHistory.goBack();
           };
         $scope.autocompleteVille = function(userInputString, timeoutPromise) {
-          return $http.get('http://univoiturage.florian-guillot.fr/api/authenticate/autocomplete/ville?term='+userInputString);
+          return $http.get(vm.domaine+'/api/authenticate/autocomplete/ville?term='+userInputString);
         };
         // Retourne une ville selon la géolocation
         vm.geoloc = function(){
@@ -53,7 +54,7 @@
             var onSuccess = function(position) {
                 console.log(vm.zoneKm);
 
-                $http.get('http://univoiturage.florian-guillot.fr/api/authenticate/coord/'+ position.coords.latitude +'/'+  position.coords.longitude  +'/'+ vm.zoneKm)
+                $http.get(vm.domaine+'/api/authenticate/coord/'+ position.coords.latitude +'/'+  position.coords.longitude  +'/'+ vm.zoneKm)
                 .success(function(result) {
 
                     $scope.loading=false;
@@ -139,7 +140,7 @@
 
             $scope.loading=true;
 
-            $http.post('http://univoiturage.florian-guillot.fr/api/authenticate/alertes/delete', data)
+            $http.post(vm.domaine+'/api/authenticate/alertes/delete', data)
             .success(function(result) {
 
                 $scope.loading=false;
@@ -168,7 +169,7 @@
 
             $scope.loading=true;
 
-            $http.post('http://univoiturage.florian-guillot.fr/api/authenticate/alertes', data)
+            $http.post(vm.domaine+'/api/authenticate/alertes', data)
             .success(function(deposeAlerte) {
                
                $scope.loading=false;
@@ -193,12 +194,12 @@
             var url;
             var result;
             if( vm.villeDepart ) {
-                url = 'http://univoiturage.florian-guillot.fr/api/authenticate/alertes/' + vm.villeDepart;
+                url = vm.domaine+'/api/authenticate/alertes/' + vm.villeDepart;
                 vm.villeDepart = '';
             } else if ( result = document.getElementById('autocomplete_value').value ) {
-                url ='http://univoiturage.florian-guillot.fr/api/authenticate/alertes/'+ result;
+                url = vm.domaine+'/api/authenticate/alertes/'+ result;
             } else {
-                url ='http://univoiturage.florian-guillot.fr/api/authenticate/alertes';
+                url = vm.domaine+'/api/authenticate/alertes';
             }
             $scope.loading=true;
 
