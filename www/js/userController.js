@@ -106,7 +106,7 @@
         };
         // Retourne une ville
         $scope.showAlertCoord = function(error) {
-            var msg = error.error?error.error:'Votre position n\'a pu être définie';
+            var msg = error.error?error.error:'Votre position n\'a pu être définie.\n';
             msg += error.message?error.message:'';
             var alertPopup = $ionicPopup.alert({
                 title: 'Géolocalisation',

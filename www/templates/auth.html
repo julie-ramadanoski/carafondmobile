@@ -3,22 +3,29 @@
       <h2 class="title">Connexion</h2>
     </div>
 	<ion-content scroll='true' class="padding has-subheader">
-		
-		<div class="list padding">
-			<label class="item item-input item-stacked-label">
-				<span class="input-label">Email</span>
-				<input type="email" placeholder="ryanchenkie@gmail.com" ng-model="auth.email">
-			</label>
-			<label class="item item-input item-stacked-label">
-				<span class="input-label">Mot de passe</span>
-				<input type="password" placeholder="Password" ng-model="auth.password" ng-keyup="$event.keyCode == 13 && auth.login()">
-			</label>
-			<button class="button button-block button-calm" ng-click="auth.login()">
-				Se connecter
-			</button>
-		</div>
+		<div class="row responsive-md">
 
-		<ion-spinner icon="ripple" ng-if="loading" class="spinner-positive"></ion-spinner>
+			<div class="list padding col col-50 col-offset-25">
+				<label class="item item-input item-stacked-label">
+					<span class="input-label">Email</span>
+					<input type="email" placeholder="ryanchenkie@gmail.com" ng-model="auth.email">
+				</label>
+				<label class="item item-input item-stacked-label">
+					<span class="input-label">Mot de passe</span>
+					<input type="password" placeholder="Password" ng-model="auth.password" ng-keyup="$event.keyCode == 13 && auth.login()">
+				</label>
+				<button class="button button-block button-calm" ng-click="auth.login()">
+					Se connecter
+				</button>
+			</div>
+
+		</div>
+		<div class="row">
+			<div class="col col-50 col-offset-25 text-center">
+				<ion-spinner class="spinner-positive" icon="ripple" ng-if="loading" ></ion-spinner>				
+			</div>
+		</div>
+		
 
 	</ion-content>
 </ion-view>

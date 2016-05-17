@@ -1,22 +1,41 @@
 
  <ion-view view-title="alertes">
     <div class="bar bar-subheader" >
-      <h2 class="title">Liste des passagers</h2>
+      <h2 class="title">Liste des covoitureurs</h2>
     </div>
-    <ion-content class="padding has-subheader">
-   
-		<ul class="list-group" ng-if="alertes">				
-	        <li class="list-group-item" ng-repeat="alerte in alertes">
-	            <h4>pseudo : {{ alerte.membre.pseudoMemb }}</h4>
-	            <p>Depart : {{ alerte.etape_depart.ville.nomVille }}
-	            <p>Destination : {{ alerte.etape_arrivee.ville.nomVille }}<p>                
-	            <a href="tel:{{ alerte.membre.telMobMemb }}"><button class="button button-positive">
-	              appeller
-	            </button></a>
+    <ion-content class="padding has-subheader ">
+    	<!-- tout les 2 items créer la ligne qui contient les deux items i et i+1, on fait des roulements de deux items -->
+		<div class="row responsive-md" ng-repeat="alerte in alertes" ng-if="$index%2 ===0">
+			
+			<div class="col col-50" ng-if="$index < alertes.length">
+				<div class="card">
+					<h2 class="item item-divider text-center">{{ alertes[$index].membre.pseudoMemb }}</h2>
+		        	<div class="item item-avatar item-button-right">
+						<img ng-src="{{ alertes[$index].membre.photoMemb }}">
+						<a href="tel:{{ alertes[$index].membre.telMobMemb }}" class="button button-large button-positive" style="top: 17px"><i class="icon ion-ios-telephone"></i></a> 
+						<p>De <strong>{{ alertes[$index].etape_depart.ville.nomVille }}</strong></p>
+						<p>à  <strong>{{ alertes[$index].etape_arrivee.ville.nomVille }}</strong><p>						     		
+		        	</div>
+		        	<div class="item item-divider text-center">Avant {{ alertes[$index].heureAlerte }} </div>
+		        </div>
+    		</div>
+    		<div class="col col-50" ng-if="$index+1 < alertes.length">
+				<div class="card">
+					<h2 class="item item-divider text-center">{{ alertes[$index+1].membre.pseudoMemb }}</h2>
+		        	<div class="item item-avatar item-button-right">
+						<img ng-src="{{ alertes[$index+1].membre.photoMemb }}">
+						<a href="tel:{{ alertes[$index+1].membre.telMobMemb }}" class="button button-large button-positive" style="top: 17px"><i class="icon ion-ios-telephone"></i></a> 
+						<p>De <strong>{{ alertes[$index+1].etape_depart.ville.nomVille }}</strong></p>
+						<p>à  <strong>{{ alertes[$index+1].etape_arrivee.ville.nomVille }}</strong><p>						     		
+		        	</div>
+		        	<div class="item item-divider text-center">Avant {{ alertes[$index+1].heureAlerte }} </div>
+		        </div>
+    		</div>
+    	</div>
 
-	        </li>
-	    </ul>
-	    <p ng-if="alertes == 0"> Il n'y a pas d'alertes correspondantes à votre recherche</p>
+	    <div class="row">
+	    	<p class="col col-50 col-offset-25 text-center" ng-if="alertes == 0"> Il n'y a pas de covoitureur dans cette ville.</p>
+	    </div>
 
 	</ion-content>
 </ion-view>

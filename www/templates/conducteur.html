@@ -1,36 +1,40 @@
 
  <ion-view view-title="conducteur">
     <div class="bar bar-subheader" >
-      <h2 class="title">Rechercher des passagers</h2>
+      <h2 class="title">Trouver des passagers</h2>
     </div>
 
     <ion-content class="padding has-subheader">
-    
-    <h4>Bonjour {{ currentUser.name }}</h4>
-    
+    <div class="row responsive-md">
 
-    <div class="autocompletion">
-        <i class="icon ion-search placeholder-icon"></i>
-        <angucomplete-alt id="autocomplete"
-          type="text"
-          placeholder="Cherchez une ville"
-          pause="100"
-          remote-url="http://localhost:8000/api/authenticate/autocomplete/ville/"
-          remote-api-handler="autocompleteVille"              
-          remote-url-data-field=""
-          title-field="value"
-          minlength="1"
-          input-class="form-control form-control-small"
-          match-class="highlight"/>
-       <!-- <input type="text"  placeholder="Ville de départ" ng-model="user.villeDepart"> -->
+      <div class="col col-50 col-offset-25">
+        <h4 class="text-center">Choisir une ville</h4>
+        <div class="autocompletion">
+            <i class="icon ion-search placeholder-icon"></i>
+            <angucomplete-alt id="autocomplete"
+              type="text"
+              placeholder="Tous les covoitureurs"
+              pause="100"
+              remote-url="http://localhost:8000/api/authenticate/autocomplete/ville/"
+              remote-api-handler="autocompleteVille"              
+              remote-url-data-field=""
+              title-field="value"
+              minlength="1"
+              input-class="form-control form-control-small"
+              match-class="highlight"/>
+        </div>
+        <button class="button button-block button-calm" ng-click="user.getAlertes()">
+          Trouver !
+        </button>
+        <button class="button button-block button-positive" ng-click="user.geoloc()">
+          Ma position
+        </button>
+      </div>
     </div>
-    <button class="button button-block button-calm" ng-click="user.getAlertes()">
-      Trouver !
-    </button>
-    <button class="button button-block button-positive" ng-click="user.geoloc()">
-      Ma position
-    </button>
-    <ion-spinner icon="spiral" ng-if="loading" class="spinner-assertive"></ion-spinner>
-      
+    <div class="row">
+    <div class="col col-50 col-offset-25 text-center">
+      <ion-spinner class="spinner-positive" icon="ripple" ng-if="loading" ></ion-spinner>       
+    </div>
+  </div>
   </ion-content>
 </ion-view>

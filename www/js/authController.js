@@ -91,6 +91,8 @@
 
                     // Remove the authenticated user from local storage
                     localStorage.removeItem('user');
+                    localStorage.removeItem('villeGeoloc');
+                    localStorage.removeItem('saveAlertes');
 
                     // Flip authenticated to false so that we no longer
                     // show UI elements dependant on the user being logged in
