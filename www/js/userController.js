@@ -19,6 +19,7 @@
         vm.zoneKm               = 5;
         vm.villeGeoloc          = JSON.parse(localStorage.getItem('villeGeoloc'));
         vm.domaine              = "http://localhost:8000"; // http://univoiturage.florian-guillot.fr
+        
 
         // Load the modal from the given template URL
         $ionicModal.fromTemplateUrl('geomodal.html',

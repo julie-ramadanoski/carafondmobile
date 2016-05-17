@@ -6,9 +6,23 @@
 
     angular
         .module('carafond')
-        .controller('AuthController', function AuthController($auth, $state, $http, $rootScope, $scope, $ionicPopup) {
+        .controller('AuthController', function AuthController($auth, $state, $http, $rootScope, $scope, $ionicPopup, $ionicPopover) {
 
             var vm = this;
+
+            // .fromTemplateUrl() method
+            $ionicPopover.fromTemplateUrl('menu.html', {
+              scope: $scope
+            })
+            .then(function(popover) {
+              $scope.popover = popover;
+            });
+            $scope.openPopover = function($event) {
+              $scope.popover.show($event);
+            };
+            $scope.closePopover = function() {
+              $scope.popover.hide();
+            };
 
             // déclarer pop up alerte (btn OK seulement)
             $scope.showAlertConnexion = function() {
@@ -36,7 +50,7 @@
                     // user so that we can flatten the promise chain
                     function() {                        
                         //return $http.get('http://univoiturage.florian-guillot.fr/api/authenticate/user');
-                        return $http.get('http://localhost:8000/api/authenticate/user');
+                         return $http.get('http://localhost:8000/api/authenticate/user');
                     }, 
                     // Handle errors
                     function(error) { 
@@ -59,7 +73,7 @@
                         $rootScope.authenticated = true;
                         $rootScope.currentUser = response.data.user;
 
-                        $state.go('home.conducteur');
+                        $state.go('home.place');
 
                     }else{
                       console.log("Pas de réponse serveur");
