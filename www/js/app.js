@@ -70,7 +70,7 @@ angular.module('carafond', ['ionic', 'satellizer','angucomplete'])
                       event.preventDefault();
 
                       // go to the "main" state which in our case is users
-                      $state.go('home.conducteur');
+                      $state.go('home.place');
                 }
             }
         });
@@ -104,6 +104,14 @@ angular.module('carafond', ['ionic', 'satellizer','angucomplete'])
       abstract: true,
       templateUrl: 'templates/home.html',
       controller: 'UserController as user'
+    })
+    .state('home.place', {
+      url: '/place',
+      views: {
+        'conducteur': {
+          templateUrl: "templates/place.html"
+        }
+      }
     })
     .state('home.conducteur', {
       url: '/conducteur',
