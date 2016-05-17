@@ -70,13 +70,13 @@
             <ion-header-bar><h3 class="title">{{currentUser.name}}</h3></ion-header-bar>
             <ion-content>
                 <ul class="list">
-                    <li class="item  item-icon-right" ui-sref="home.conducteur" ng-click="closePopover()">
+                    <li class="item  item-icon-right" ui-sref="home.conducteur" nav-direction="enter" ng-click="closePopover()">
                         Trouver des passagers<i class="icon ion-chevron-right"></i>
                     </li>
-                    <li class="item item-icon-right" ui-sref="home.passager" ng-click="closePopover()">
+                    <li class="item item-icon-right" ui-sref="home.passager" nav-direction="enter" ng-click="closePopover()">
                         Faire du stop<i class="icon ion-chevron-right"></i>
                     </li>
-                    <li class="item text-center" ng-click="closePopover()">
+                    <li class="item text-center" ng-click="closePopover()"  >
                         <button class="button button-assertive center" ng-click="auth.logout()">déconnexion</button>
                     </li>
                 </ul>
