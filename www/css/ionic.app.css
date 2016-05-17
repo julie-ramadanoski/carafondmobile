@@ -9721,14 +9721,23 @@ a.button {
   -webkit-transition-duration: 0s;
   transition-duration: 0s; }
 
+.bgimg_home {
+  background: url("../img/place-sm.jpg") no-repeat fixed center; }
+
+.bgimg_passager {
+  background: url("../img/passager-sm.png") no-repeat fixed right; }
+
+.bgimg_conducteur {
+  background: url("../img/conducteur-sm.png") no-repeat fixed left; }
+
 .tabs {
   border: none;
-  background: none; }
+  padding-top: 10px; }
 
 .tab-item {
   border: 2px solid #48ba6e;
   height: 90%;
-  margin: 0 8%;
+  margin: 4px 8% 0;
   opacity: 0.5;
   border-radius: 10px; }
   .tab-item .icon, .tab-item .tab-title {
@@ -9738,7 +9747,7 @@ a.button {
       font-size: 37px; }
 
 .tabs-striped .tab-item.tab-item-active, .tabs-striped .tab-item.active, .tabs-striped .tab-item.activated {
-  margin-top: 0;
+  margin-top: 4px;
   color: #444;
   border-style: solid;
   border-width: 2px;
@@ -9746,3 +9755,11 @@ a.button {
 
 .md-scroll-mask {
   position: initial; }
+
+@media screen and (min-height: 1023px) {
+  .bgimg_home {
+    background: url("../img/place-lg.jpg") no-repeat fixed center; }
+  .bgimg_passager {
+    background: url("../img/passager-lg.png") no-repeat fixed right; }
+  .bgimg_conducteur {
+    background: url("../img/conducteur-lg.png") no-repeat fixed left; } }

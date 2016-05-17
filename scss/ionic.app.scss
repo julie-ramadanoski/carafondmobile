@@ -22,15 +22,24 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
-
+.bgimg_home {
+	background: url("../img/place-sm.jpg") no-repeat fixed center; 
+}
+.bgimg_passager{
+	background: url("../img/passager-sm.png") no-repeat fixed right;
+}
+.bgimg_conducteur {
+	background: url("../img/conducteur-sm.png") no-repeat fixed left;
+}
 .tabs {
 	border: none;
-	background: none;
+	padding-top: 10px;
+	//background: url("../img/place-sm.jpg")center fixed;
 }
 .tab-item {
 	border: 2px solid $calm;
 	height: 90%;
-	margin: 0 8%;
+	margin: 4px 8% 0;
 	opacity: 0.5;
 	border-radius: 10px;
 	.icon, .tab-title {		
@@ -46,7 +55,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 		&.tab-item-active,
 		&.active,
 		&.activated {
-			margin-top: 0;
+			margin-top: 4px;
 			color: $dark;
 			border-style: solid;
 			border-width: $tabs-striped-border-width;
@@ -56,3 +65,14 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 }
  .md-scroll-mask { position: initial;}
 
+@media screen and (min-height : $grid-responsive-lg-break) {
+    .bgimg_home {
+		background: url("../img/place-lg.jpg") no-repeat fixed center; 
+	}
+	.bgimg_passager{
+		background: url("../img/passager-lg.png") no-repeat fixed right;
+	}
+	.bgimg_conducteur {
+		background: url("../img/conducteur-lg.png") no-repeat fixed left;
+	}
+}

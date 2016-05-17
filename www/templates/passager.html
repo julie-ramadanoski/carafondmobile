@@ -1,12 +1,15 @@
- <ion-view view-title="passager">
-     <div class="bar bar-subheader" >
-      <h2 class="title">Faire du stop</h2>
-    </div>
-  <ion-content class="padding has-subheader">
+<ion-view view-title="passager">
+<div class="bar bar-subheader" >
+    <h2 class="title">Faire du stop</h2>
+</div>
+<ion-content class="padding has-subheader bgimg_passager">
 <!--     soit le conducteur n'a pas déposé d'alerte pour ce jour -->
-    <div class="row responsive-md" ng-hide="currentUser.alertes[0].id">
-        <div class="col col-50 col-offset-25" >
-            <h4 class="text-center">Créer une alerte</h4>
+<div class="row responsive-md" ng-hide="currentUser.alertes[0].id">
+    <div class="col col-50 col-offset-25" >
+
+        <div class="card">
+            <h4 class="item text-center">Créer une alerte</h4>
+
             <div class="list">
                 <label class="item item-input item-stacked-label">
                     <span class="input-label">Ville de départ</span>
@@ -14,89 +17,90 @@
                     <div class="autocompletion">
                         <i class="icon ion-search placeholder-icon"></i>
                         <angucomplete-alt id="autocompleteDepart"
-                          type="text"
-                          placeholder="Gap"
-                          pause="100"
-                          remote-url="http://localhost:8000/api/authenticate/autocomplete/ville/"
-                          remote-api-handler="autocompleteVille"              
-                          remote-url-data-field=""
-                          title-field="value"
-                          minlength="1"
-                          input-class="form-control form-control-small"
-                          match-class="highlight"/>
-                      
+                        type="text"
+                        placeholder="Gap"
+                        pause="100"
+                        remote-url="http://localhost:8000/api/authenticate/autocomplete/ville/"
+                        remote-api-handler="autocompleteVille"              
+                        remote-url-data-field=""
+                        title-field="value"
+                        minlength="1"
+                        input-class="form-control form-control-small"
+                        match-class="highlight"/>
                     </div>
-
                 </label>
+
                 <label class="item item-input item-stacked-label">
                     <span class="input-label">Ville d'arrivée</span>
                     <div class="autocompletion">
                         <i class="icon ion-search placeholder-icon"></i>
                         <angucomplete-alt id="autocompleteArrivee"
-                          type="text"
-                          placeholder="Aix-en-provence"
-                          pause="100"
-                          remote-url="http://localhost:8000/api/authenticate/autocomplete/ville/"
-                          remote-api-handler="autocompleteVille"              
-                          remote-url-data-field=""
-                          title-field="value"
-                          minlength="1"
-                          input-class="form-control form-control-small"
-                          match-class="highlight"/>
-                  
+                        type="text"
+                        placeholder="Aix-en-provence"
+                        pause="100"
+                        remote-url="http://localhost:8000/api/authenticate/autocomplete/ville/"
+                        remote-api-handler="autocompleteVille"              
+                        remote-url-data-field=""
+                        title-field="value"
+                        minlength="1"
+                        input-class="form-control form-control-small"
+                        match-class="highlight"/>
                     </div>
-                  <!-- <input type="text" placeholder="Aix en provence" ng-model="user.villeArriveeAlerte"> -->
                 </label>
+
                 <label class="item item-input item-stacked-label">
-                    <span class="input-label">avant</span>
+                    <span class="input-label">Avant</span>
                     <input type="text" placeholder="15h" ng-model="user.heureAlerte">
                 </label>
             </div>
-            <button class="button button-block button-positive" ng-click="user.setAlertes()">
-                Confirmer
-            </button> 
-          
-            <div class="alert alert-danger" ng-if="user.errorSuppr">
-                <strong>Info : </strong> {{user.errorSuppr}}
-            </div>
-        </div>
-    </div>
 
-    <!--     soit le conducteur a déposée une alerte qui s'affiche ici et peut la supprimer -->
-    <div class="row responsive-md" ng-show="currentUser.alertes[0].id">
-        <div class="col">
-            <h4 class="text-center">Mon alerte</h4>
-            <div class="row" >
-                <div class="col col-50 col-offset-25">           
-                    <div class="card" >               
-                        <h4 class="item item-divider text-center">{{ currentUser.pseudoMemb }}</h4>
-                        <div class="item item-text-wrap item-avatar">
-                            <img ng-src="{{ currentUser.photoMemb }}">
-                            
-                            <p>De  <strong>{{ currentUser.alertes[0].etape_depart.ville.nomVille  }}</strong></p>
-                            <p>à <strong>{{ currentUser.alertes[0].etape_arrivee.ville.nomVille }}</strong></p>
-                        </div>
-                        <div class="item  item-divider text-center">
-                            Avant <strong>{{ currentUser.alertes[0].heureAlerte }}</strong>
-                        </div>   
-                    </div>
+            <div class="item">
+                <button class="button button-block button-positive" ng-click="user.setAlertes()">
+                    Confirmer
+                </button> 
+                <div class="alert alert-danger" ng-if="user.errorSuppr">
+                    <strong>Info : </strong> {{user.errorSuppr}}
                 </div>
             </div>
-            <div class="row">                
-                <div class="col col-50 col-offset-25 text-center">
-                    <button class="button button-assertive" ng-click="user.suppAlerte()">supprimer</button> 
-                </div> 
+        </div>
+    </div>
+</div>
+
+<!--     soit le conducteur a déposée une alerte qui s'affiche ici et peut la supprimer -->
+<div class="row responsive-md" ng-show="currentUser.alertes[0].id">
+    <div class="col">
+        <h4 class="text-center">Mon alerte</h4>
+        <div class="row" >
+            <div class="col col-50 col-offset-25">           
+                <div class="card" >               
+                    <h4 class="item item-divider text-center">{{ currentUser.pseudoMemb }}</h4>
+                    <div class="item item-text-wrap item-avatar">
+                        <img ng-src="{{ currentUser.photoMemb }}">
+
+                        <p>De  <strong>{{ currentUser.alertes[0].etape_depart.ville.nomVille  }}</strong></p>
+                        <p>à <strong>{{ currentUser.alertes[0].etape_arrivee.ville.nomVille }}</strong></p>
+                    </div>
+                    <div class="item  item-divider text-center">
+                        Avant <strong>{{ currentUser.alertes[0].heureAlerte }}</strong>
+                    </div>   
+                </div>
             </div>
         </div>
-    </div>
-
-    <!-- SPINNER -->
-    <div class="row">
-        <div class="col col-50 col-offset-25 text-center">
-            <ion-spinner class="spinner-positive" icon="ripple" ng-if="loading" ></ion-spinner>       
+        <div class="row">                
+            <div class="col col-50 col-offset-25 text-center">
+                <button class="button button-assertive" ng-click="user.suppAlerte()">supprimer</button> 
+            </div> 
         </div>
     </div>
+</div>
 
-  </ion-content>
+<!-- SPINNER -->
+<div class="row">
+    <div class="col col-50 col-offset-25 text-center">
+        <ion-spinner class="spinner-positive" icon="ripple" ng-if="loading" ></ion-spinner>       
+    </div>
+</div>
+
+</ion-content>
 
 </ion-view>
