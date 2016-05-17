@@ -36,16 +36,19 @@
 
         
     <ion-header-bar class="bar-balanced">
-        <div class="buttons" ng-hide="user.ionicHistory.currentView().url == '/auth' || user.ionicHistory.backView() == null  || user.ionicHistory.backView().url == '/auth'" ng-controller="UserController as user">
-           <button class="button" ng-click="goBack()"><i class="ion-arrow-left-c"></i></button>
+        <div class="buttons"
+             ng-hide="user.ionicHistory.currentView().url == '/auth' || user.ionicHistory.backView() == null  || user.ionicHistory.backView().url == '/auth'" 
+             ng-controller="UserController as user">
+            <button class="button" ng-click="goBack()"><i class="ion-arrow-left-c"></i></button>
         </div>
         <h1 class="title">CarAFond</h1>
-
-        <div class="buttons" ng-show="authenticated" ng-controller="AuthController as auth">
-            <button class="button" ng-click="auth.logout()">déconnexion</button>
+        <div class="buttons button-clear button-positive" 
+             ng-show="authenticated" 
+             ng-controller="AuthController as auth">
+            <button class="button button-icon icon ion-navicon" ng-click="openPopover($event)"></button>       
         </div>
     </ion-header-bar>
-    
+
     <ion-nav-view></ion-nav-view>  
 
     <script id="geomodal.html" type="text/ng-template">
@@ -62,5 +65,23 @@
         </ion-modal-view>
     </script>
 
+    <script id="menu.html" type="text/ng-template">
+        <ion-popover-view>
+            <ion-header-bar><h3 class="title">{{currentUser.name}}</h3></ion-header-bar>
+            <ion-content>
+                <ul class="list">
+                    <li class="item  item-icon-right" ui-sref="home.conducteur" ng-click="closePopover()">
+                        Trouver des passagers<i class="icon ion-chevron-right"></i>
+                    </li>
+                    <li class="item item-icon-right" ui-sref="home.passager" ng-click="closePopover()">
+                        Faire du stop<i class="icon ion-chevron-right"></i>
+                    </li>
+                    <li class="item text-center" ng-click="closePopover()">
+                        <button class="button button-assertive center" ng-click="auth.logout()">déconnexion</button>
+                    </li>
+                </ul>
+            </ion-content>
+        </ion-popover-view>
+    </script>
   </body>
 </html>
