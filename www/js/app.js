@@ -83,9 +83,7 @@ angular.module('carafond', ['ionic', 'satellizer','angucomplete'])
   // Définition route par défault
   $urlRouterProvider.otherwise('/auth');
 
-  //$authProvider.loginUrl = 'http://univoiturage.florian-guillot.fr/api/authenticate';
-  //$authProvider.loginUrl = 'http://localhost:8000/api/authenticate';
-  $authProvider.loginUrl = 'http://192.168.11.41:8000/api/authenticate';
+  $authProvider.loginUrl = 'http://univoiturage.florian-guillot.fr/api/authenticate';
 
   // Setup for the $httpInterceptor
   $provide.factory('redirectWhenLoggedOut', redirectWhenLoggedOut);

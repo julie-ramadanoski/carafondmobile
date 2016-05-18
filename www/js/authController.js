@@ -45,9 +45,7 @@
                     // Return an $http request for the now authenticated
                     // user so that we can flatten the promise chain
                     function() {                        
-                        //return $http.get('http://univoiturage.florian-guillot.fr/api/authenticate/user');
-                        // return $http.get('http://localhost:8000/api/authenticate/user');
-                         return $http.get('http://192.168.11.41:8000/api/authenticate/user');
+                        return $http.get('http://univoiturage.florian-guillot.fr/api/authenticate/user');
                     }, 
                     // Handle errors
                     function(error) { 
