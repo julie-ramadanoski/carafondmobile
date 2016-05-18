@@ -18,19 +18,20 @@
         vm.heureAlerte          = '';
         vm.zoneKm               = 5;
         vm.villeGeoloc          = JSON.parse(localStorage.getItem('villeGeoloc'));
+
         vm.domaine              = "http://192.168.11.41:8000" //"http://localhost:8000"; // http://univoiturage.florian-guillot.fr
         
 
         // Load the modal from the given template URL
-        $ionicModal.fromTemplateUrl('geomodal.html',
-            function($ionicModal) {
-                vm.modal = $ionicModal;
-            },
-            {
-                scope: $scope, // Use our scope for the scope of the modal to keep it simple                    
-                animation: 'slide-in-up' // The animation we want to use for the modal entrance
-            }
-        );
+        $ionicModal.fromTemplateUrl('geomodal.html',{
+            scope: $scope, // Use our scope for the scope of the modal to keep it simple                    
+            animation: 'slide-in-up' // The animation we want to use for the modal entrance
+        }).then(function($ionicModal) {
+            vm.modal = $ionicModal;
+        });
+        $scope.closeModal = function() {
+            vm.modal.hide();
+        };
         // Liste des alertes recherchées par un conducteur
         vm.alertes = JSON.parse(localStorage.getItem('saveAlertes'));
         $scope.alertes = vm.alertes;

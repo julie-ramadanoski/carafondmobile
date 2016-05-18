@@ -10,7 +10,6 @@
 
             var vm = this;
 
-            // .fromTemplateUrl() method
             $ionicPopover.fromTemplateUrl('menu.html', {
               scope: $scope
             })
@@ -30,9 +29,6 @@
                     title: 'Connexion impossible',
                     template: 'Vérifiez votre login et mot de passe'
                 });
-                /*alertPopup.then(function(res) {
-                console.log('Thank you for not eating my delicious ice cream cone');
-                });*/
             };
 
             vm.login = function() {
