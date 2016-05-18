@@ -9732,7 +9732,8 @@ a.button {
 
 .tabs {
   border: none;
-  padding-top: 10px; }
+  padding-top: 2px;
+  background: none; }
 
 .tab-item {
   border: 2px solid #48ba6e;
@@ -9745,6 +9746,12 @@ a.button {
     vertical-align: top; }
     .tab-item .icon:before, .tab-item .tab-title:before {
       font-size: 37px; }
+
+.btnPassager {
+  background-color: #bae3db; }
+
+.btnConducteur {
+  background-color: #b6bad7; }
 
 .tabs-striped .tab-item.tab-item-active, .tabs-striped .tab-item.active, .tabs-striped .tab-item.activated {
   margin-top: 4px;
