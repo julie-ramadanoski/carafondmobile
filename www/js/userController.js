@@ -18,7 +18,7 @@
         vm.heureAlerte          = '';
         vm.zoneKm               = 5;
         vm.villeGeoloc          = JSON.parse(localStorage.getItem('villeGeoloc'));
-        vm.domaine              = "http://localhost:8000"; // http://univoiturage.florian-guillot.fr
+        vm.domaine              = "http://192.168.11.41:8000" //"http://localhost:8000"; // http://univoiturage.florian-guillot.fr
         
 
         // Load the modal from the given template URL

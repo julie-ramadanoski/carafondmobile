@@ -33,7 +33,6 @@ angular.module('carafond', ['ionic', 'satellizer','angucomplete'])
             // from snapping when text inputs are focused. Ionic handles this internally for
             // a much nicer keyboard experience.
             cordova.plugins.Keyboard.disableScroll(true);
-            alert('ICI');
         }
         if(window.StatusBar) {
             StatusBar.styleDefault();
@@ -85,7 +84,8 @@ angular.module('carafond', ['ionic', 'satellizer','angucomplete'])
   $urlRouterProvider.otherwise('/auth');
 
   //$authProvider.loginUrl = 'http://univoiturage.florian-guillot.fr/api/authenticate';
-  $authProvider.loginUrl = 'http://localhost:8000/api/authenticate';
+  //$authProvider.loginUrl = 'http://localhost:8000/api/authenticate';
+  $authProvider.loginUrl = 'http://192.168.11.41:8000/api/authenticate';
 
   // Setup for the $httpInterceptor
   $provide.factory('redirectWhenLoggedOut', redirectWhenLoggedOut);
